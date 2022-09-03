@@ -1,15 +1,16 @@
 $colors: (
     "blue": #2196F3,
-    "green": #689F38,
+    "green": #4caf50,
     "yellow": #FBC02D,
     "cyan": #00BCD4,
     "pink": #E91E63,
-    "indigo": #4E5FBB,
+    "indigo": #3F51B5,
     "teal": #009688,
-    "orange": #FF9800,
+    "orange": #F57C00,
     "bluegray": #607D8B,
-    "purple": #9C27B0
-);
+    "purple": #9C27B0,
+    "primary": $primaryColor
+) !default;
 
 $emphasis-high:rgba(0,0,0,.87);
 $emphasis-medium:rgba(0,0,0,.60);
@@ -236,6 +237,7 @@ $colorPickerPreviewWidth:2rem;
 $colorPickerPreviewHeight:2rem;
 $colorPickerBg:#323232;
 $colorPickerBorderColor:#191919;
+$colorPickerBorder:1px solid #191919 !default;
 $colorPickerHandleColor:#ffffff;
 
 //togglebutton
@@ -299,6 +301,7 @@ $calendarHeaderBorder:$divider;
 $calendarHeaderTextColor:$textColor;
 $calendarHeaderFontWeight:500;
 $calendarHeaderCellPadding:.5rem;
+$calendarMonthYearHeaderHoverTextColor: $primaryColor !default;
 
 $calendarCellDatePadding:.5rem;
 $calendarCellDateWidth:2.5rem;
@@ -349,6 +352,7 @@ $panelHeaderTextHoverColor:$textColor;
 $panelContentBorderColor: #e0e0e0 !default;
 $panelContentBorder:1px solid #e0e0e0;
 $panelContentBg:#ffffff;
+$panelContentEvenRowBg:rgba(0,0,0,.02) !default;
 $panelContentTextColor:$textColor;
 $panelContentPadding:1rem;
 
@@ -628,6 +632,7 @@ $progressBarHeight:4px;
 $progressBarBorder:0 none;
 $progressBarBg:rgba($primaryColor, .32);
 $progressBarValueBg:$primaryColor;
+$progressBarValueTextColor:$primaryTextColor !default;
 
 //menu (e.g. menu, menubar, tieredmenu)
 $menuWidth:12.5rem;
@@ -827,6 +832,8 @@ $imagePreviewActionIconBorderRadius:50% !default;
     --text-color:#{$textColor};
     --text-color-secondary:#{$textSecondaryColor};
     --primary-color:#{$primaryColor};
+    --primary-menu-text-color:#{$primaryMenuTextColor};
+    --primary-lightest-color:#{$primaryLightestColor};
     --primary-color-text:#{$primaryTextColor};
     --font-family:#{$fontFamily};
     --surface-0: #ffffff;

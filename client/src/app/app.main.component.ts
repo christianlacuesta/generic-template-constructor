@@ -1,82 +1,57 @@
 import {Component, AfterViewInit, Renderer2, OnInit, OnDestroy} from '@angular/core';
-import { MenuService } from './main/menu/app.menu.service';
+import { MenuService } from './app.menu.service';
 import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
-import { AppStateService } from './services/app-state.service';
-import { Subscription } from 'rxjs';
-import { AppStateModel } from './models/app-state/app-state.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserSessionService } from './services/usersession.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './app.main.component.html'
 })
 export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
+
     topbarMenuActive: boolean;
+
     menuActive: boolean;
+
     staticMenuDesktopInactive: boolean;
+
     mobileMenuActive: boolean;
+
     menuClick: boolean;
+
     mobileTopbarActive: boolean;
+
     topbarRightClick: boolean;
+
     topbarItemClick: boolean;
+
     activeTopbarItem: string;
+
     documentClickListener: () => void;
+
     configActive: boolean;
+
     configClick: boolean;
+
     rightMenuActive: boolean;
+
     menuHoverActive = false;
+
     searchClick = false;
+
     search = false;
+
     currentInlineMenuKey: string;
+
     inlineMenuActive: any[] = [];
+
     inlineMenuClick: boolean;
 
-    isAuthenticated: boolean = false;
-
-    timer: number = 0;
-
-    appStateDataSub: Subscription = new Subscription();
-    getUserSessionByIdSub: Subscription = new Subscription();
-    routeSub: Subscription = new Subscription();
-
-    constructor(public renderer: Renderer2, 
-        private menuService: MenuService, 
-        private primengConfig: PrimeNGConfig,  
-        private appStateService: AppStateService,
-        private userSessionService: UserSessionService,
-        private router: Router,
-        private route: ActivatedRoute,
-        public app: AppComponent) { }
+    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
+                public app: AppComponent) { }
 
     ngOnInit() {
-
-        this.routeSub = this.route.params.subscribe((params: any) => {
-
-            this.getUserSessionByIdSub = this.userSessionService.getUserSessionById(params.sessionId, params.username, 'login').subscribe((usersession: any) => { 
-                if (usersession && usersession.length > 0) { 
-                    
-                    this.appStateService.appStateData.next(usersession[0].appState)
-
-                    setInterval(() => {
-                        this.timer = this.timer + 1;
-                        if (this.timer === 5000) {
-                            this.appStateService.onLogout(usersession[0])
-                        }
-                    }, 1000);
-
-
-                } else {
-                    this.router.navigate(['login']);
-                }
-
-            })
-        })
-
-
-
-        this.menuActive = !this.isStatic() && !this.isMobile();
+        this.menuActive = this.isStatic() && !this.isMobile();
     }
 
     ngAfterViewInit() {
@@ -256,9 +231,8 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.documentClickListener) {this.documentClickListener(); }
-        this.appStateDataSub.unsubscribe();
-        this.getUserSessionByIdSub.unsubscribe();
-        this.routeSub.unsubscribe();
+        if (this.documentClickListener) {
+            this.documentClickListener();
+        }
     }
 }

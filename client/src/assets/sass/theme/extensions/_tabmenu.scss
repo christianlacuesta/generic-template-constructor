@@ -6,13 +6,21 @@
             .p-menuitem-link {
                 transition: background-color $transitionDuration;
                 border-radius: 0;
-                
+
                 > .p-ink {
                     background-color: rgba($primaryColor, .16);
                 }
 
                 &:focus {
                     background-color: rgba($primaryColor, .12);
+                }
+            }
+
+            &.p-highlight {
+                .p-menuitem-link {
+                    &:focus {
+                        background-color: rgba($primaryColor, .12);
+                    }
                 }
             }
         }

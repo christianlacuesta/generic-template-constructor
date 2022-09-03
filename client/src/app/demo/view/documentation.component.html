@@ -1,0 +1,1316 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card docs">
+
+            <h5>Current Version</h5>
+            <p>Angular 14 and PrimeNG 14</p>
+
+            <h5>Dependencies</h5>
+            <p>Ultima has no direct dependency. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
+
+            <h5>Getting Started</h5>
+            <p>Ultima is a true native application template for Angular and is distributed as a CLI project. In case CLI is not installed already, use the command below to set it up.</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+npm install -g @angular-cli
+</app-code>
+
+            <p>Once CLI is ready in your system, extract the contents of the Ultima zip file distribution, cd to the directory,
+            install the libraries from npm and then execute "ng serve" to run the application in your local environment at http://localhost:4200/.</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+cd ultima
+npm install
+ng serve
+</app-code>
+
+            <p>That's it, you may now start with the development of your application.</p>
+
+            <h5>Important CLI Commands</h5>
+            <p>Following commands are derived from CLI.</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Run 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+
+Run 'ng build' to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+Run 'ng test' to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+Run 'ng e2e' to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+Run 'ng help' for more options.
+</app-code>
+
+            <h5>Structure</h5>
+            <p>Ultima consists of 3 main parts; the application layout, layout resources and theme resources for PrimeNG components. <i>app.component.html</i> inside app folder is the html template for the base layout,
+                required resources for the layout are placed inside the <i>src/assets/layout</i> folder and similarly theme resources are inside <i>src/assets/theme</i> folder.
+            </p>
+
+            <h5>Template</h5>
+            <p>Main layout is the html view of the app.main.component.ts, it is divided into a couple of sections such as topbar, right panel, inline menu, menu, breadcrumb and footer. Here is the code for
+                the main template. The component class app.main.component.ts implements the logic such as opening menus, layout modes and so on.
+            </p>
+<app-code ngPreserveWhitespaces ngNonBindable>
+&lt;div class=&quot;layout-wrapper&quot; [ngClass]=&quot;&#123;'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple,
+    'layout-menu-static': isStatic(),
+    'layout-menu-overlay': isOverlay(),
+    'layout-menu-horizontal': isHorizontal(),
+    'layout-menu-slim': isSlim(),
+    'layout-menu-active': menuActive,
+    'layout-menu-mobile-active': mobileMenuActive,
+    'layout-topbar-mobile-active': mobileTopbarActive,
+    'layout-rightmenu-active': rightMenuActive,
+    'layout-rtl': app.isRTL&#125;&quot; [class]=&quot;'layout-menu-' + app.menuTheme + ' layout-topbar-' + app.topbarTheme&quot;&gt;
+
+    &lt;app-topbar&gt;&lt;/app-topbar&gt;
+
+    &lt;app-rightmenu&gt;&lt;/app-rightmenu&gt;
+
+    &lt;div class=&quot;menu-wrapper&quot; (click)=&quot;onMenuClick($event)&quot;&gt;
+        &lt;div class=&quot;layout-menu-container&quot;&gt;
+            &lt;app-inline-menu *ngIf=&quot;app.inlineMenuPosition=='top' || app.inlineMenuPosition=='both'&quot; key=&quot;top&quot;&gt;&lt;/app-inline-menu&gt;
+            &lt;app-menu&gt;&lt;/app-menu&gt;
+            &lt;app-inline-menu *ngIf=&quot;app.inlineMenuPosition=='bottom' || app.inlineMenuPosition=='both'&quot; key=&quot;bottom&quot;&gt;&lt;/app-inline-menu&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;layout-main&quot;&gt;
+        &lt;app-breadcrumb&gt;&lt;/app-breadcrumb&gt;
+
+        &lt;div class=&quot;layout-content&quot;&gt;
+            &lt;router-outlet&gt;&lt;/router-outlet&gt;
+        &lt;/div&gt;
+
+        &lt;app-footer&gt;&lt;/app-footer&gt;
+    &lt;/div&gt;
+
+    &lt;app-config&gt;&lt;/app-config&gt;
+
+    &lt;div *ngIf=&quot;mobileMenuActive&quot; class=&quot;layout-mask modal-in&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+</app-code>
+
+            <h5>Topbar</h5>
+            <img src="assets/layout/images/doc/topbar-doc.jpg" alt="topbar" class="mb-3" style="max-width: 60%;"/>
+            <p>It is a separate component defined in app.topbar.component.ts file. This menu can be fully customized according to the application's needs.
+                There are special classes in the topbar to provide some interactions such as hover, expand/collapse state etc. The pseudo code is as follows.</p>
+<div style="height:400px;overflow: auto;">
+<app-code ngPreserveWhitespaces ngNonBindable>
+&lt;elementTag class=&quot;layout-topbar&quot;&gt;
+    &lt;elementTag class=&quot;layout-topbar-left&quot;&gt;
+        &lt;elementTag class=&quot;layout-topbar-logo&quot;&gt;
+            // custom implementation to add logo
+        &lt;/elementTag&gt;
+
+        &lt;elementTag class=&quot;layout-menu-button&quot; (click)=&quot;appMain.onMenuButtonClick($event)&quot; pRipple&gt;
+            // custom implementation to add menu button
+        &lt;/elementTag&gt;
+
+        &lt;elementTag class=&quot;layout-topbar-mobile-button&quot; (click)=&quot;appMain.onTopbarMobileButtonClick($event)&quot; pRipple&gt;
+            // custom implementation to add mobile menu button
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+
+    &lt;elementTag class=&quot;layout-topbar-right&quot; [ngClass]=&quot;&#123;'layout-topbar-mobile-active': appMain.mobileTopbarActive&#125;&quot;&gt;
+        &lt;elementTag class=&quot;layout-topbar-actions-left&quot;&gt;
+            // custom implementation. Maybe, a megaMenu component can be added.
+        &lt;/elementTag&gt;
+        &lt;elementTag class=&quot;layout-topbar-actions-right&quot;&gt;
+            &lt;elementTag class=&quot;layout-topbar-items&quot;&gt;
+                &lt;elementTag class=&quot;layout-topbar-item layout-search-item&quot;&gt;
+                    &lt;elementTag class=&quot;layout-topbar-action&quot; (click)=&quot;appMain.onTopbarItemClick($event, 'search')&quot; pRipple&gt;
+                        // custom implementation
+                    &lt;/elementTag&gt;
+
+                    &lt;elementTag class=&quot;layout-search-panel&quot; [@topbarActionPanelAnimation]=&quot;'visible'&quot; *ngIf=&quot;appMain.search&quot; (@topbarActionPanelAnimation.done)=&quot;onSearchAnimationEnd($event)&quot;&gt;
+                        // custom implementation
+                        &lt;input #searchInput type=&quot;text&quot; pInputText placeholder=&quot;Search&quot; (click)=&quot;appMain.searchClick = true;&quot; (keydown)=&quot;appMain.onSearchKeydown($event)&quot;&gt;
+                    &lt;/elementTag&gt;
+                &lt;/elementTag&gt;
+                // A unique class can be defined to keep track of the expanded/collapsed states of each item. For example, The 'custom-class' is defined for this item.
+                &lt;elementTag class=&quot;layout-topbar-item custom-class&quot;&gt;
+                    &lt;elementTag class=&quot;layout-topbar-action&quot; (click)=&quot;appMain.onTopbarItemClick($event, 'custom-class')&quot; pRipple&gt;
+                        // custom implementation. Used to open this action panel.
+                    &lt;/elementTag&gt;
+
+                    &lt;elementTag class=&quot;layout-topbar-action-panel&quot; [@topbarActionPanelAnimation]=&quot;'visible'&quot; *ngIf=&quot;appMain.activeTopbarItem === 'custom-class'&quot;&gt;
+                        &lt;elementTag&gt;
+                            // custom implementation
+                        &lt;/elementTag&gt;
+                        //OR
+                        // The 'layout-topbar-action-item' class is defined so that an element can have hover state.
+                        &lt;elementTag class=&quot;layout-topbar-action-item&quot;&gt;
+                            // custom implementation
+                        &lt;/elementTag&gt;
+                    &lt;/elementTag&gt;
+                &lt;/elementTag&gt;
+            &lt;/elementTag&gt;
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</app-code>
+</div>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Right Menu</h5>
+            <img src="assets/layout/images/doc/rightmenu-doc.jpg" alt="rightmenu" class="mb-3" style="max-width: 60%; height: 300px;"/>
+            <p>It is a separate component defined in app.rightmenu.component.ts file based on PrimeNG <a href="https://primefaces.org/primeng/showcase/#/sidebar">Sidebar</a> component.
+                All properties of the sidebar component are available. The menu can be fully customized according to the application's needs.
+                There are special methods and classes in the right menu to provide some interactions. The pseudo code is as follows.</p>
+<app-code ngPreserveWhitespaces ngNonBindable>
+// in app.topbar.component.html or elsewhere
+&lt;elementTag (click)=&quot;appMain.onRightMenuButtonClick($event)&quot; pRipple&gt;
+    // custom implementation
+&lt;/elementTag&gt;
+
+// in app.rightmenu.component.html
+&lt;p-sidebar [(visible)]=&quot;appMain.rightMenuActive&quot; [baseZIndex]=&quot;1000&quot; [styleClass]=&quot;'layout-rightmenu p-sidebar-sm'&quot;&gt;
+    // custom implementation
+&lt;/p-sidebar&gt;
+</app-code>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Inline Menu</h5>
+            <img src="assets/layout/images/doc/inlinemenu-doc.jpg" alt="rightmenu" class="mb-3" style="max-width: 60%; height: 450px;"/>
+            <p>It is a separate component defined in app.inlinemenu.component.ts file. This menu can be fully customized according to the application's needs and it is created according to its location within the element with the layout-menu-container class.
+                There are special classes in the inline menu to provide some interactions. The pseudo code is as follows.</p>
+<app-code ngPreserveWhitespaces ngNonBindable>
+&lt;elementTag [ngClass]=&quot;&#123;'layout-inline-menu': true, 'layout-inline-menu-active':appMain.inlineMenuActive[key]&#125;&quot;&gt;
+    &lt;elementTag class=&quot;layout-inline-menu-action&quot; (click)=&quot;onClick($event)&quot;&gt;
+        // custom implementation
+        &lt;elementTag class=&quot;layout-inline-menu-icon&quot;&gt;&lt;/elementTag&gt; // custom icon
+    &lt;/elementTag&gt;
+
+    &lt;elementTag class=&quot;layout-inline-menu-action-panel&quot; [@menu]=&quot;appMain.inlineMenuActive[key] ? isHorizontalActive() ? 'visible' : 'visibleAnimated' : isHorizontalActive() ? 'hidden' : 'hiddenAnimated'&quot;&gt;
+        &lt;elementTag class=&quot;layout-inline-menu-action-item&quot;&gt;
+            // custom implementation
+        &lt;/elementTag&gt;
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</app-code>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+<app-code ngPreserveWhitespaces ngNonBindable>
+// in app.main.component.html
+&lt;div class=&quot;layout-menu-container&quot;&gt;
+    &lt;app-inline-menu&gt;&lt;/app-inline-menu&gt; // It is created at the top of the menu
+    &lt;app-menu&gt;&lt;/app-menu&gt;
+    &lt;app-inline-menu&gt;&lt;/app-inline-menu&gt; // It is created at the bottom of the menu
+&lt;/div&gt;
+</app-code>
+<small class="muted-text">(* Note: The 'key' attribute should be used to distinguish between two or more inline menus.)</small>
+
+            <h5>Menu</h5>
+            <p>It is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
+            navigate to menu.component.ts and define your own model. Here is the menu component from the sample application.</p>
+<div style="height:400px;overflow: auto;">
+<app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
+import &#123;Component, OnInit&#125; from '@angular/core';
+import &#123;AppComponent&#125; from './app.component';
+
+@Component(&#123;
+    selector: 'app-menu',
+    template: `
+        &lt;ul class="layout-menu"&gt;
+            &lt;li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    `
+&#125;)
+export class AppMenuComponent implements OnInit &#123;
+
+    model: any[];
+
+    constructor(public app: AppComponent) &#123;&#125;
+
+    ngOnInit() &#123;
+        this.model = [
+            &#123;
+                label: 'Favorites', icon: 'pi pi-fw pi-home',
+                items: [
+                    &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;,
+                    &#123;label: 'Dashboard Analytics', icon: 'pi pi-fw pi-home', routerLink: ['/favorites/dashboardanalytics']&#125;
+                ]
+            &#125;,
+            &#123;
+                label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
+                items: [
+                    &#123;label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']&#125;,
+                    &#123;label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']&#125;,
+                    &#123;label: 'Float Label', icon: 'pi pi-bookmark', routerLink: ['/uikit/floatlabel']&#125;,
+                    &#123;label: 'Invalid State', icon: 'pi pi-exclamation-circle', routerLink: ['/uikit/invalidstate']&#125;,
+                    &#123;label: 'Button', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'&#125;,
+                    &#123;label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']&#125;,
+                    &#123;label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']&#125;,
+                    &#123;label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']&#125;,
+                    &#123;label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']&#125;,
+                    &#123;label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']&#125;,
+                    &#123;label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']&#125;,
+                    &#123;label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], preventExact: true&#125;,
+                    &#123;label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']&#125;,
+                    &#123;label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']&#125;,
+                    &#123;label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']&#125;,
+                    &#123;label: 'Misc', icon: 'pi pi-fw pi-circle-off', routerLink: ['/uikit/misc']&#125;
+                ]
+            &#125;,
+            &#123;
+                label: 'Prime Blocks', icon: 'pi pi-fw pi-prime', routerLink: ['/blocks'],
+                items: [
+                    &#123;label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks']&#125;,
+                    &#123;label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank'&#125;,
+                ]
+            &#125;,
+            &#123;
+                label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['/utilities'],
+                items: [
+                    &#123;label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['utilities/icons']&#125;,
+                    &#123;label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank'&#125;,
+                ]
+            &#125;,
+            &#123;
+                label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
+                items: [
+                    &#123;label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']&#125;,
+                    &#123;label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']&#125;,
+                    &#123;label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']&#125;,
+                    &#123;
+                        label: 'Landing', icon: 'pi pi-fw pi-globe',
+                        items: [
+                            &#123;label: 'Static', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'&#125;,
+                            &#123;label: 'Component', icon: 'pi pi-fw pi-globe', routerLink: ['/landing']&#125;
+                        ]
+                    &#125;,
+                    &#123;label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']&#125;,
+                    &#123;label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']&#125;,
+                    &#123;label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']&#125;,
+                    &#123;label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error']&#125;,
+                    &#123;label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']&#125;,
+                    &#123;label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['/access']&#125;,
+                    &#123;label: 'Contact Us', icon: 'pi pi-fw pi-pencil', routerLink: ['/contactus']&#125;,
+                    &#123;label: 'Empty', icon: 'pi pi-fw pi-circle-off', routerLink: ['/pages/empty']&#125;
+                ]
+            &#125;,
+            &#123;
+                label: 'Hierarchy', icon: 'pi pi-fw pi-align-left',
+                items: [
+                    &#123;
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-align-left',
+                        items: [
+                            &#123;
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-align-left'&#125;,
+                                ]
+                            &#125;,
+                            &#123;
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-align-left'&#125;
+                                ]
+                            &#125;,
+                        ]
+                    &#125;,
+                    &#123;
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-align-left',
+                        items: [
+                            &#123;
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                    &#123;label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-align-left'&#125;,
+                                ]
+                            &#125;,
+                            &#123;
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-align-left',
+                                items: [
+                                    &#123;label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-align-left'&#125;,
+                                ]
+                            &#125;,
+                        ]
+                    &#125;
+                ]
+            &#125;,
+            &#123;
+                label: 'Start', icon: 'pi pi-fw pi-download',
+                items: [
+                    &#123;
+                        label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
+                    &#125;,
+                    &#123;
+                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                    &#125;
+                ]
+            &#125;
+        ];
+    &#125;
+&#125;
+</app-code>
+</div>
+
+            <h5>Breadcrumb</h5>
+            <img src="assets/layout/images/doc/breadcrumb-doc.jpg" alt="breadcrumb" class="mb-3" style="max-width: 60%;"/>
+            <p>It is a separate component defined in app.breadcrumb.component.ts file based on PrimeNG <a href="https://primefaces.org/primeng/showcase/#/breadcrumb">Breadcrumb</a> component.
+                All properties of the breadcrumb component are available. The model is created using the app.breadcrumb.service.ts file. The pseudo code is as follows.</p>
+<app-code ngPreserveWhitespaces ngNonBindable>
+&lt;elementTag class=&quot;layout-breadcrumb-container&quot;&gt;
+    &lt;p-breadcrumb [model]=&quot;items&quot; styleClass=&quot;layout-breadcrumb&quot;&gt;&lt;/p-breadcrumb&gt;
+    &lt;elementTag class=&quot;layout-breadcrumb-buttons&quot;&gt;
+        // custom implementation for right buttons
+    &lt;/elementTag&gt;
+&lt;/elementTag&gt;
+</app-code>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Footer</h5>
+            <p>It is a separate component defined in app.footer.component.ts file. The pseudo code is as follows.</p>
+<app-code ngPreserveWhitespaces ngNonBindable>
+&lt;elementTag class=&quot;layout-footer&quot;&gt;
+    // custom implementation
+&lt;/elementTag&gt;
+</app-code>
+<small class="muted-text">(* Note: The &lt;elementTag&gt; tag can be an html element or a component tag. It can be changed according to need.)</small>
+
+            <h5>Integration with an Existing CLI Project</h5>
+            <p>To setup Ultima in an existing project, copy the <i>src/assets</i> folder to your projects folder with the same name
+                and replace the contents of app.component.ts, app.component.html with their counterparts in Ultima under <i>src/app</i> folder.</p>
+
+            <p>Install PrimeNG</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+npm install primeng@latest --save
+npm install primeicons@latest --save
+</app-code>
+
+            <p>Add PrimeNG CSS at styles section in angular.json.</p>
+
+ <app-code ngPreserveWhitespaces ngNonBindable lang="json">
+"styles": [
+    "styles.scss"      //your styles and overrides
+],
+</app-code>
+
+            <p>Last part is adding theme and layout css files, in the CLI app they are defined using link tags in index.html so the demo can switch them on
+            the fly by changing the path however if this is not a requirement, you may also add them to the styles configuration so they go inside the bundle.</p>
+
+            <h5>Theme</h5>
+            <p>Ultima provides 34 PrimeNG themes out of the box, setup of a theme simple including the css of theme to your page that are located inside assets/theme folder such as assets/theme/amber/*.</p>
+
+            <ul>
+                <li>amber/theme-light</li>
+                <li>amber/theme-dark</li>
+                <li>blue/theme-light</li>
+                <li>blue/theme-dark</li>
+                <li>bluegrey/theme-light</li>
+                <li>bluegrey/theme-dark</li>
+                <li>brown/theme-light</li>
+                <li>brown/theme-dark</li>
+                <li>cyan/theme-light</li>
+                <li>cyan/theme-dark</li>
+                <li>deeporange/theme-light</li>
+                <li>deeporange/theme-dark</li>
+                <li>deeppurple/theme-light</li>
+                <li>deeppurple/theme-dark</li>
+                <li>green/theme-light</li>
+                <li>green/theme-dark</li>
+                <li>indigo/theme-light</li>
+                <li>indigo/theme-dark</li>
+                <li>lightblue/theme-light</li>
+                <li>lightblue/theme-dark</li>
+                <li>lightgreen/theme-light</li>
+                <li>lightgreen/theme-dark</li>
+                <li>lime/theme-light</li>
+                <li>lime/theme-dark</li>
+                <li>orange/theme-light</li>
+                <li>orange/theme-dark</li>
+                <li>pink/theme-light</li>
+                <li>pink/theme-dark</li>
+                <li>purple/theme-light</li>
+                <li>purple/theme-dark</li>
+                <li>teal/theme-light</li>
+                <li>teal/theme-dark</li>
+                <li>yellow/theme-light</li>
+                <li>yellow/theme-dark</li>
+            </ul>
+
+            <p>A custom theme can be developed by the following steps.</p>
+            <ul>
+                <li>Choose a custom theme name such as theme-myown.</li>
+                <li>Create a file named theme-myown.scss under <i>assets/theme folder</i>.</li>
+                <li>Define the variables listed below and import the <i>/sass/theme/_theme_light</i> file.</li>
+                <li>Build the scss to generate css</li>
+                <li>Include the generated theme.css to your page.</li>
+            </ul>
+
+            <p>Here are the variables required to create a theme, you may need to change the last line according to the
+                relative path of the sass folder in your application.</p>
+
+<app-code ngPreserveWhitespaces ngNonBindable lang="css">
+$primaryColor:#2196F3;
+$primaryLightestColor: #E3F2FD;
+$primaryMenuTextColor: $primaryColor;
+$primaryTextColor:#ffffff;
+$accentColor:#f37f21;
+$accentTextColor:#212121;
+
+@import '../../sass/theme/theme_light';
+</app-code>
+
+            <p> An example sass command to compile the css would be;</p>
+
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+sass src/assets/theme-myown/theme.scss src/assets/theme-myown/theme.css
+</app-code>
+
+            <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
+            so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
+sass --watch src/assets:src/assets --no-source-map
+</app-code>
+
+
+            <p>For both cases, several .scss files such as _layout.scss, _theme.scss or _variables.scss has to be present relative to your scss files, these are available inside the assets/sass folder in the distribution.</p>
+            <p>In case you'd like to customize the structure not just the colors, the _variables.scss is where the structural variables (e.g. font size, paddings) for the layout are defined.</p>
+<h6>sass/variables/layout/_layout_common.scss</h6>
+<app-code ngPreserveWhitespaces ngNonBindable lang="css">
+//general
+$fontSize:14px !default;
+$fontFamily: 'Roboto' !default;
+$borderRadius:5px !default;
+$animationDuration:.2s !default;
+$animationTimingFunction:cubic-bezier(.05,.74,.2,.99) !default;
+$letterSpacing:normal !default;
+$transitionDuration:.2s !default;
+$mobileBreakpoint:991px !default;
+</app-code>
+
+<h6>sass/variables/theme/_theme_light.scss</h6>
+<div style="height:400px;overflow: auto;">
+<app-code ngPreserveWhitespaces ngNonBindable lang="css">
+$colors: (
+    "blue": #2196F3,
+    "green": #4caf50,
+    "yellow": #FBC02D,
+    "cyan": #00BCD4,
+    "pink": #E91E63,
+    "indigo": #3F51B5,
+    "teal": #009688,
+    "orange": #F57C00,
+    "bluegray": #607D8B,
+    "purple": #9C27B0,
+    "primary": $primaryColor
+) !default;
+
+$emphasis-high:rgba(0,0,0,.87);
+$emphasis-medium:rgba(0,0,0,.60);
+$emphasis-low:rgba(0,0,0,.38);
+$emphasis-lower:rgba(0,0,0,.12);
+$overlayColor:#000000;
+
+//global
+$fontFamily:Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+$fontSize:1rem;
+$fontWeight:normal;
+$textColor:$emphasis-high;
+$textSecondaryColor:$emphasis-medium;
+$borderRadius:4px;
+$transitionDuration:.2s;
+$formElementTransition:background-color $transitionDuration, border-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+$actionIconTransition:background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration;
+$listItemTransition:none;
+$primeIconFontSize:1rem;
+$divider:1px solid rgba(0,0,0,.12);
+$inlineSpacing:.5rem;
+$disabledOpacity:.38;
+$maskBg:rgba(0, 0, 0, 0.32);
+$loadingIconFontSize:2rem;
+$errorColor:#B00020;
+
+//selected state
+$highlightBg:rgba($primaryColor, .12);
+$highlightTextColor:$primaryColor;
+
+//scale
+$scaleSM:0.875;
+$scaleLG:1.25;
+
+//focus
+$focusOutlineColor:transparent;
+$focusOutline:0 none;
+$focusOutlineOffset:0;
+$focusShadow:none;
+
+//action icons
+$actionIconWidth:2.5rem;
+$actionIconHeight:2.5rem;
+$actionIconBg:transparent;
+$actionIconBorder:0 none;
+$actionIconColor:$textSecondaryColor;
+$actionIconHoverBg:rgba(0,0,0,.04);
+$actionIconHoverBorderColor:transparent;
+$actionIconHoverColor:$textSecondaryColor;
+$actionIconBorderRadius:50%;
+
+//input field (e.g. inputtext, spinner, inputmask)
+$inputPadding:1rem 1rem;
+$inputTextFontSize:1rem;
+$inputBg:#ffffff;
+$inputTextColor:$emphasis-high;
+$inputIconColor:$emphasis-medium;
+$inputBorder:1px solid $emphasis-low;
+$inputHoverBorderColor:$emphasis-high;
+$inputFocusBorderColor:$primaryColor;
+$inputErrorBorderColor:$errorColor;
+$inputPlaceholderTextColor:$emphasis-medium;
+$inputFilledBg:#f5f5f5;
+$inputFilledHoverBg:#ececec;
+$inputFilledFocusBg:#dcdcdc;
+
+//input groups
+$inputGroupBg:$inputBg;
+$inputGroupTextColor:$emphasis-medium;
+$inputGroupAddOnMinWidth:2.357rem;
+
+//input lists (e.g. dropdown, autocomplete, multiselect, orderlist)
+$inputListBg:#ffffff;
+$inputListTextColor:$textColor;
+$inputListBorder:1px solid #e5e5e5;
+$inputListPadding:0;
+$inputListItemPadding:1rem 1rem;
+$inputListItemBg:transparent;
+$inputListItemTextColor:$textColor;
+$inputListItemHoverBg:rgba(0,0,0,.04);
+$inputListItemTextHoverColor:$textColor;
+$inputListItemBorder:0 none;
+$inputListItemBorderRadius:0;
+$inputListItemMargin:0;
+$inputListItemFocusShadow:none;
+$inputListHeaderPadding:1rem;
+$inputListHeaderMargin:0;
+$inputListHeaderBg:#ffffff;
+$inputListHeaderTextColor:$textColor;
+$inputListHeaderBorder:1px solid rgba(0,0,0,.12);
+
+//inputs with overlays (e.g. autocomplete, dropdown, multiselect)
+$inputOverlayBg:$inputListBg;
+$inputOverlayHeaderBg:$inputListHeaderBg;
+$inputOverlayBorder:0 none;
+$inputOverlayShadow:0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+
+//button
+$buttonPadding:0.714rem 1rem;
+$buttonIconOnlyWidth:3rem;
+$buttonIconOnlyPadding:0.714rem;
+$buttonBg:$primaryColor;
+$buttonTextColor:$primaryTextColor;
+$buttonBorder:0 none;
+$buttonHoverBg:rgba($primaryColor, .92);
+$buttonTextHoverColor:$primaryTextColor;
+$buttonHoverBorderColor:transparent;
+$buttonActiveBg:rgba($primaryColor, .68);
+$buttonTextActiveColor:$primaryTextColor;
+$buttonActiveBorderColor:transparent;
+$raisedButtonShadow:0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+$roundedButtonBorderRadius:2rem;
+
+$textButtonHoverBgOpacity:.04;
+$textButtonActiveBgOpacity:.16;
+$outlinedButtonBorder:1px solid;
+$plainButtonTextColor:$textSecondaryColor;
+$plainButtonHoverBgColor:rgba(0,0,0,.04);
+$plainButtonActiveBgColor:rgba(0,0,0,.16);
+
+$secondaryButtonBg:$accentColor;
+$secondaryButtonTextColor:$accentTextColor;
+$secondaryButtonBorder:0 none;
+$secondaryButtonHoverBg:rgba($accentColor, .92);
+$secondaryButtonTextHoverColor:$accentTextColor;
+$secondaryButtonHoverBorderColor:transparent;
+$secondaryButtonActiveBg:rgba($accentColor, .68);
+$secondaryButtonTextActiveColor:$accentTextColor;
+$secondaryButtonActiveBorderColor:transparent;
+$secondaryButtonFocusShadow:none;
+
+$infoButtonBg:#2196F3;
+$infoButtonTextColor:#ffffff;
+$infoButtonBorder:0 none;
+$infoButtonHoverBg:rgba(#2196F3, .92);
+$infoButtonTextHoverColor:#ffffff;
+$infoButtonHoverBorderColor:transparent;
+$infoButtonActiveBg:rgba(#2196F3, .68);
+$infoButtonTextActiveColor:#ffffff;
+$infoButtonActiveBorderColor:transparent;
+$infoButtonFocusShadow:none;
+
+$successButtonBg:#689F38;
+$successButtonTextColor:#ffffff;
+$successButtonBorder:0 none;
+$successButtonHoverBg:rgba(#689F38, .92);
+$successButtonTextHoverColor:#ffffff;
+$successButtonHoverBorderColor:transparent;
+$successButtonActiveBg:rgba(#689F38, .68);
+$successButtonTextActiveColor:#ffffff;
+$successButtonActiveBorderColor:transparent;
+$successButtonFocusShadow:none;
+
+$warningButtonBg:#FBC02D;
+$warningButtonTextColor:#212529;
+$warningButtonBorder:0 none;
+$warningButtonHoverBg:rgba(#FBC02D, .92);
+$warningButtonTextHoverColor:#212529;
+$warningButtonHoverBorderColor:transparent;
+$warningButtonActiveBg:rgba(#FBC02D, .68);
+$warningButtonTextActiveColor:#212529;
+$warningButtonActiveBorderColor:transparent;
+$warningButtonFocusShadow:none;
+
+$helpButtonBg:#9C27B0;
+$helpButtonTextColor:#ffffff;
+$helpButtonBorder:0 none;
+$helpButtonHoverBg:rgba(#9C27B0, .92);
+$helpButtonTextHoverColor:#ffffff;
+$helpButtonHoverBorderColor:transparent;
+$helpButtonActiveBg:rgba(#9C27B0, .68);
+$helpButtonTextActiveColor:#ffffff;
+$helpButtonActiveBorderColor:transparent;
+$helpButtonFocusShadow:none;
+
+$dangerButtonBg:#D32F2F;
+$dangerButtonTextColor:#ffffff;
+$dangerButtonBorder:0 none;
+$dangerButtonHoverBg:rgba(#D32F2F, .92);
+$dangerButtonTextHoverColor:#ffffff;
+$dangerButtonHoverBorderColor:transparent;
+$dangerButtonActiveBg:rgba(#D32F2F, .68);
+$dangerButtonTextActiveColor:#ffffff;
+$dangerButtonActiveBorderColor:transparent;
+$dangerButtonFocusShadow:none;
+
+$linkButtonColor:$primaryColor;
+$linkButtonHoverColor:$primaryColor;
+$linkButtonTextHoverDecoration:underline;
+$linkButtonFocusShadow:none;
+
+//checkbox
+$checkboxWidth:18px;
+$checkboxHeight:18px;
+$checkboxBorder:2px solid #757575;
+$checkboxIconFontSize:14px;
+$checkboxActiveBorderColor:$primaryColor;
+$checkboxActiveBg:$primaryColor;
+$checkboxIconActiveColor:$primaryTextColor;
+$checkboxActiveHoverBg:$primaryColor;
+$checkboxIconActiveHoverColor:$primaryTextColor;
+$checkboxActiveHoverBorderColor:$primaryColor;
+
+//radiobutton
+$radiobuttonWidth:20px;
+$radiobuttonHeight:20px;
+$radiobuttonBorder:2px solid #757575;
+$radiobuttonIconSize:10px;
+$radiobuttonActiveBorderColor:$primaryColor;
+$radiobuttonActiveBg:$primaryTextColor;
+$radiobuttonIconActiveColor:$primaryColor;
+$radiobuttonActiveHoverBg:$primaryTextColor;
+$radiobuttonIconActiveHoverColor:$primaryColor;
+$radiobuttonActiveHoverBorderColor:$primaryColor;
+
+//colorpicker
+$colorPickerPreviewWidth:2rem;
+$colorPickerPreviewHeight:2rem;
+$colorPickerBg:#323232;
+$colorPickerBorderColor:#191919;
+$colorPickerHandleColor:#ffffff;
+
+//togglebutton
+$toggleButtonBg:#ffffff;
+$toggleButtonBorder:1px solid rgba(0,0,0,.12);
+$toggleButtonTextColor:$textColor;
+$toggleButtonIconColor:$textSecondaryColor;
+$toggleButtonHoverBg:#f6f6f6;
+$toggleButtonHoverBorderColor:rgba(0,0,0,.12);
+$toggleButtonTextHoverColor:$textColor;
+$toggleButtonIconHoverColor:$textSecondaryColor;
+$toggleButtonActiveBg:#e0e0e1;
+$toggleButtonActiveBorderColor:#e0e0e1;
+$toggleButtonTextActiveColor:$textColor;
+$toggleButtonIconActiveColor:$textSecondaryColor;
+$toggleButtonActiveHoverBg:#d9d8d9;
+$toggleButtonActiveHoverBorderColor:#d9d8d9;
+$toggleButtonTextActiveHoverColor:$textColor;
+$toggleButtonIconActiveHoverColor:$textSecondaryColor;
+
+//inplace
+$inplacePadding:$inputPadding;
+$inplaceHoverBg:rgba(0,0,0,.04);
+$inplaceTextHoverColor:$textColor;
+
+//rating
+$ratingIconFontSize:1.143rem;
+$ratingCancelIconColor:#B00020;
+$ratingCancelIconHoverColor:#B00020;
+$ratingStarIconOffColor:$primaryColor;
+$ratingStarIconOnColor:$primaryColor;
+$ratingStarIconHoverColor:$primaryColor;
+
+//slider
+$sliderBg:#c1c1c1;
+$sliderBorder:0 none;
+$sliderHorizontalHeight:2px;
+$sliderVerticalWidth:2px;
+$sliderHandleWidth:20px;
+$sliderHandleHeight:20px;
+$sliderHandleBg:$primaryColor;
+$sliderHandleBorder:0 none;
+$sliderHandleBorderRadius:50%;
+$sliderHandleHoverBorderColor:0 none;
+$sliderHandleHoverBg:$primaryColor;
+$sliderRangeBg:$primaryColor;
+
+//calendar
+$calendarTableMargin:.5rem 0;
+$calendarPadding:.5rem;
+$calendarBg:#ffffff;
+$calendarInlineBg:$calendarBg;
+$calendarTextColor:$textColor;
+$calendarBorder:$inputListBorder;
+$calendarOverlayBorder:$inputOverlayBorder;
+
+$calendarHeaderPadding:.5rem;
+$calendarHeaderBg:#ffffff;
+$calendarInlineHeaderBg:$calendarBg;
+$calendarHeaderBorder:$divider;
+$calendarHeaderTextColor:$textColor;
+$calendarHeaderFontWeight:500;
+$calendarHeaderCellPadding:.5rem;
+
+$calendarCellDatePadding:.5rem;
+$calendarCellDateWidth:2.5rem;
+$calendarCellDateHeight:2.5rem;
+$calendarCellDateBorderRadius:50%;
+$calendarCellDateBorder:1px solid transparent;
+$calendarCellDateHoverBg:rgba(0,0,0,.04);
+$calendarCellDateTodayBg:#ffffff;
+$calendarCellDateTodayBorderColor: rgba(0,0,0,12);
+$calendarCellDateTodayTextColor:$textColor;
+
+$calendarButtonBarPadding:1rem 0;
+$calendarTimePickerPadding:.5rem;
+$calendarTimePickerElementPadding:0 .5rem;
+$calendarTimePickerTimeFontSize:1.25rem;
+
+$calendarBreakpoint:769px;
+$calendarCellDatePaddingSM:0;
+
+//input switch
+$inputSwitchWidth:2.75rem;
+$inputSwitchHeight:1rem;
+$inputSwitchBorderRadius:.5rem;
+$inputSwitchHandleWidth:1.50rem;
+$inputSwitchHandleHeight:1.50rem;
+$inputSwitchHandleBorderRadius:50%;
+$inputSwitchSliderPadding:-1px;
+$inputSwitchSliderOffBg:rgba(0,0,0,.38);
+$inputSwitchHandleOffBg:#ffffff;
+$inputSwitchSliderOffHoverBg:rgba(0,0,0,.38);
+$inputSwitchSliderOnBg:rgba($primaryColor, .5);
+$inputSwitchSliderOnHoverBg:rgba($primaryColor, .5);
+$inputSwitchHandleOnBg:$primaryColor;
+
+//panel
+$panelHeaderBorder:1px solid #e0e0e0;
+$panelHeaderBg:#ffffff;
+$panelHeaderTextColor:$textColor;
+$panelHeaderFontWeight:500;
+$panelHeaderPadding:1rem;
+$panelToggleableHeaderPadding:.5rem 1rem;
+
+$panelHeaderHoverBg:rgba(0,0,0,.04);
+$panelHeaderHoverBorderColor:#e0e0e0;
+$panelHeaderTextHoverColor:$textColor;
+
+$panelContentBorder:1px solid #e0e0e0;
+$panelContentBg:#ffffff;
+$panelContentTextColor:$textColor;
+$panelContentPadding:1rem;
+
+$panelFooterBorder:1px solid #e0e0e0;
+$panelFooterBg:#ffffff;
+$panelFooterTextColor:$textColor;
+$panelFooterPadding:1rem 1rem;
+
+//accordion
+$accordionSpacing:0;
+$accordionHeaderBorder:0 none;
+$accordionHeaderBg:#ffffff;
+$accordionHeaderTextColor:$textColor;
+$accordionHeaderFontWeight:400;
+$accordionHeaderPadding:1.5rem;
+
+$accordionHeaderHoverBg:#f6f6f6;
+$accordionHeaderHoverBorderColor:transparent;
+$accordionHeaderTextHoverColor:$textColor;
+
+$accordionHeaderActiveBg:#ffffff;
+$accordionHeaderActiveBorderColor:transparent;
+$accordionHeaderTextActiveColor:$textColor;
+
+$accordionHeaderActiveHoverBg:#ffffff;
+$accordionHeaderActiveHoverBorderColor:transparent;
+$accordionHeaderTextActiveHoverColor:$textColor;
+
+$accordionContentBorder:0 none;
+$accordionContentBg:#ffffff;
+$accordionContentTextColor:$textColor;
+$accordionContentPadding:1rem 1.5rem;
+
+//tabview
+$tabviewNavBorder:solid rgba(0,0,0,.12);
+$tabviewNavBorderWidth:0 0 1px 0;
+$tabviewNavBg:#ffffff;
+
+$tabviewHeaderSpacing:0;
+$tabviewHeaderBorder:none;
+$tabviewHeaderBorderWidth:0 0 0 0;
+$tabviewHeaderBorderColor:transparent transparent transparent transparent;
+$tabviewHeaderBg:#ffffff;
+$tabviewHeaderTextColor:$textSecondaryColor;
+$tabviewHeaderFontWeight:500;
+$tabviewHeaderPadding:1rem 1.5rem;
+$tabviewHeaderMargin:0 0 0 0;
+
+$tabviewHeaderHoverBg:rgba($primaryColor,.04);
+$tabviewHeaderHoverBorderColor:transparent;
+$tabviewHeaderTextHoverColor:$textSecondaryColor;
+
+$tabviewHeaderActiveBg:#ffffff;
+$tabviewHeaderActiveBorderColor:transparent;
+$tabviewHeaderTextActiveColor:$primaryColor;
+
+$tabviewContentBorder:0 none;
+$tabviewContentBg:#ffffff;
+$tabviewContentTextColor:$textColor;
+$tabviewContentPadding:$panelContentPadding;
+
+//upload
+$fileUploadProgressBarHeight:4px;
+$fileUploadContentPadding:2rem 1rem;
+
+//scrollpanel
+$scrollPanelTrackBorder:0 none;
+$scrollPanelTrackBg:rgba(0,0,0,.12);
+
+//card
+$cardBodyPadding:1rem;
+$cardTitleFontSize:1.5rem;
+$cardTitleFontWeight:700;
+$cardSubTitleFontWeight:400;
+$cardSubTitleColor:$textSecondaryColor;
+$cardContentPadding:1rem 0;
+$cardFooterPadding:1rem 0 0 0;
+$cardShadow:0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+
+//editor
+$editorToolbarBg:$panelHeaderBg;
+$editorToolbarBorder:$panelHeaderBorder;
+$editorToolbarPadding:$panelHeaderPadding;
+$editorToolbarIconColor:$textSecondaryColor;
+$editorToolbarIconHoverColor:$textColor;
+$editorIconActiveColor:$primaryColor;
+$editorContentBorder:$panelContentBorder;
+$editorContentBg:$panelContentBg;
+
+//paginator
+$paginatorBg:#ffffff;
+$paginatorTextColor:$textColor;
+$paginatorBorder:solid #e4e4e4;
+$paginatorBorderWidth:0;
+$paginatorPadding:.5rem 1rem;
+$paginatorElementWidth:$buttonIconOnlyWidth;
+$paginatorElementHeight:$buttonIconOnlyWidth;
+$paginatorElementBg:transparent;
+$paginatorElementBorder:0 none;
+$paginatorElementIconColor:$textSecondaryColor;
+$paginatorElementHoverBg:rgba(0,0,0,.04);
+$paginatorElementHoverBorderColor:transparent;
+$paginatorElementIconHoverColor:$textSecondaryColor;
+$paginatorElementBorderRadius:50%;
+$paginatorElementMargin:.143rem;
+$paginatorElementPadding:0;
+
+//table
+$tableHeaderBorder:1px solid #e4e4e4;
+$tableHeaderBorderWidth:0 0 1px 0;
+$tableHeaderBg:#ffffff;
+$tableHeaderTextColor:$textColor;
+$tableHeaderFontWeight:500;
+$tableHeaderPadding:1rem 1rem;
+
+$tableHeaderCellPadding:1rem 1rem;
+$tableHeaderCellBg:#ffffff;
+$tableHeaderCellTextColor:$textColor;
+$tableHeaderCellFontWeight:500;
+$tableHeaderCellBorder:1px solid #e4e4e4;
+$tableHeaderCellBorderWidth:0 0 1px 0;
+$tableHeaderCellHoverBg:rgba(0,0,0,.04);
+$tableHeaderCellTextHoverColor:$textColor;
+$tableHeaderCellIconColor:$textSecondaryColor;
+$tableHeaderCellIconHoverColor:$textSecondaryColor;
+$tableHeaderCellHighlightBg:#ffffff;
+$tableHeaderCellHighlightTextColor:$textColor;
+$tableHeaderCellHighlightHoverBg:rgba(0,0,0,.04);
+$tableHeaderCellHighlightTextHoverColor:$textColor;
+$tableSortableColumnBadgeSize:1.143rem;
+
+$tableBodyRowBg:#ffffff;
+$tableBodyRowTextColor:$textColor;
+$tableBodyRowEvenBg:rgba(0,0,0,.02);
+$tableBodyRowHoverBg:rgba(0,0,0,.04);
+$tableBodyRowTextHoverColor:$textColor;
+$tableBodyCellBorder:1px solid #e4e4e4;
+$tableBodyCellBorderWidth:0 0 1px 0;
+$tableBodyCellPadding:1rem 1rem;
+
+$tableFooterCellPadding:1rem 1rem;
+$tableFooterCellBg:#ffffff;
+$tableFooterCellTextColor:$textColor;
+$tableFooterCellFontWeight:500;
+$tableFooterCellBorder:1px solid #e4e4e4;
+$tableFooterCellBorderWidth:0 0 1px 0;
+$tableResizerHelperBg:$primaryColor;
+
+$tableFooterBorder:1px solid #e4e4e4;
+$tableFooterBorderWidth:0 0 1px 0;
+$tableFooterBg:#ffffff;
+$tableFooterTextColor:$textColor;
+$tableFooterFontWeight:500;
+$tableFooterPadding:1rem 1rem;
+
+$tableCellContentAlignment:left;
+$tableTopPaginatorBorderWidth:0 0 1px 0;
+$tableBottomPaginatorBorderWidth:0 0 1px 0;
+
+$tableScaleSM:0.5;
+$tableScaleLG:1.25;
+
+//dataview
+$dataViewContentPadding:1rem 0;
+$dataViewContentBorder:0 none;
+$dataViewListItemBorder:solid rgba(0,0,0,.12);
+$dataViewListItemBorderWidth:0 0 1px 0;
+
+//orderlist, picklist
+$orderListBreakpoint:769px;
+$pickListBreakpoint:769px;
+
+//schedule
+$fullCalendarEventBg:$highlightBg;
+$fullCalendarEventBorder:1px solid $highlightBg;
+$fullCalendarEventTextColor:$highlightTextColor;
+
+//tree
+$treeNodePadding:.25rem;
+$treeNodeContentPadding:.75rem;
+$treeNodeChildrenPadding:0 0 0 1rem;
+$treeNodeIconColor:$textSecondaryColor;
+
+//timeline
+$timelineVerticalEventContentPadding:0 1rem !default;
+$timelineHorizontalEventContentPadding:1rem 0 !default;
+$timelineEventMarkerWidth:1rem !default;
+$timelineEventMarkerHeight:1rem !default;
+$timelineEventMarkerBorderRadius:50% !default;
+$timelineEventMarkerBorder:0 none !default;
+$timelineEventMarkerBackground:#bdbdbd !default;
+$timelineEventConnectorSize:2px !default;
+$timelineEventColor:#bdbdbd !default;
+
+//org chart
+$organizationChartConnectorColor:rgba(0,0,0,.12);
+
+//message
+$messageMargin:1rem 0;
+$messagePadding: 1.25rem 1.5rem;
+$messageBorderWidth:0 0 0 0;
+$messageIconFontSize:1.5rem;
+$messageTextFontSize:1rem;
+$messageTextFontWeight:500;
+
+//inline message
+$inlineMessagePadding:$inputPadding;
+$inlineMessageMargin:0;
+$inlineMessageIconFontSize:1rem;
+$inlineMessageTextFontSize:1rem;
+$inlineMessageBorderWidth:1px;
+
+//toast
+$toastIconFontSize:2rem;
+$toastMessageTextMargin:0 0 0 1rem;
+$toastMargin:0 0 1rem 0;
+$toastPadding:1.5rem;
+$toastBorderWidth:0 0 0 0;
+$toastShadow:0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+$toastOpacity:.9;
+$toastTitleFontWeight:700;
+$toastDetailMargin:$inlineSpacing 0 0 0;
+
+//severities
+$infoMessageBg:#B3E5FC;
+$infoMessageBorder:solid transparent;
+$infoMessageTextColor:#01579B;
+$infoMessageIconColor:#01579B;
+$successMessageBg:#C8E6C9;
+$successMessageBorder:solid transparent;
+$successMessageTextColor:#1B5E20;
+$successMessageIconColor:#1B5E20;
+$warningMessageBg:#FFECB3;
+$warningMessageBorder:solid transparent;
+$warningMessageTextColor:#7f6003;
+$warningMessageIconColor:#7f6003;
+$errorMessageBg:#FFCDD2;
+$errorMessageBorder:solid transparent;
+$errorMessageTextColor:#B71C1C;
+$errorMessageIconColor:#B71C1C;
+
+//overlays
+$overlayContentBorder:0 none;
+$overlayContentBg:$panelContentBg;
+$overlayContainerShadow:0 11px 15px -7px rgba(0,0,0,.2), 0 24px 38px 3px rgba(0,0,0,.14), 0 9px 46px 8px rgba(0,0,0,.12);
+
+//dialog
+$dialogHeaderBg:#ffffff;
+$dialogHeaderBorder:0 none;
+$dialogHeaderTextColor:$textColor;
+$dialogHeaderFontWeight:500;
+$dialogHeaderFontSize:1.25rem;
+$dialogHeaderPadding:1.5rem;
+$dialogContentPadding: 0 1.5rem 1.5rem 1.5rem;
+$dialogFooterBorder:0 none;
+$dialogFooterPadding:1rem 1.5rem;
+
+//tooltip
+$tooltipBg:rgba(97,97,97,.9);
+$tooltipTextColor:#ffffff;
+$tooltipPadding:.5rem;
+
+//steps
+$stepsItemBg:transparent;
+$stepsItemBorder:1px solid transparent;
+$stepsItemTextColor:$textColor;
+$stepsItemNumberWidth:2rem;
+$stepsItemNumberHeight:2rem;
+$stepsItemNumberFontSize:1.143rem;
+$stepsItemNumberColor:$textColor;
+$stepsItemNumberBorderRadius:50%;
+$stepsItemActiveFontWeight:500;
+
+//progressbar
+$progressBarHeight:4px;
+$progressBarBorder:0 none;
+$progressBarBg:rgba($primaryColor, .32);
+$progressBarValueBg:$primaryColor;
+
+//menu (e.g. menu, menubar, tieredmenu)
+$menuWidth:12.5rem;
+$menuBg:#ffffff;
+$menuBorder:1px solid #e5e5e5;
+$menuTextColor:$textColor;
+$menuitemPadding:1rem 1rem;
+$menuitemBorderRadius:0;
+$menuitemTextColor:$textColor;
+$menuitemIconColor:$textSecondaryColor;
+$menuitemTextHoverColor:$textColor;
+$menuitemIconHoverColor:$textSecondaryColor;
+$menuitemHoverBg:rgba(0,0,0,.04);
+$menuitemTextActiveColor:$textColor;
+$menuitemIconActiveColor:$textSecondaryColor;
+$menuitemActiveBg:rgba(0,0,0,.04);
+$menuitemSubmenuIconFontSize:.875rem;
+$submenuHeaderMargin:0;
+$submenuHeaderPadding:1rem;
+$submenuHeaderBg:#ffffff;
+$submenuHeaderTextColor:$textSecondaryColor;
+$submenuHeaderBorderRadius:0;
+$submenuHeaderFontWeight:400;
+$overlayMenuBg:$menuBg;
+$overlayMenuBorder:0 none;
+$overlayMenuShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+$verticalMenuPadding:.5rem 0;
+$menuSeparatorMargin:.5rem 0;
+
+$breadcrumbPadding:1rem;
+$breadcrumbBg:#ffffff;
+$breadcrumbBorder:1px solid #e5e5e5;
+$breadcrumbItemTextColor:$textColor;
+$breadcrumbItemIconColor:$textSecondaryColor;
+$breadcrumbLastItemTextColor:$textColor;
+$breadcrumbLastItemIconColor:$textSecondaryColor;
+$breadcrumbSeparatorColor:$textSecondaryColor;
+
+$horizontalMenuPadding:1rem;
+$horizontalMenuBg:transparent;
+$horizontalMenuBorder:1px solid #e5e5e5;
+$horizontalMenuTextColor:$textColor;
+$horizontalMenuRootMenuitemPadding:1rem;
+$horizontalMenuRootMenuitemBorderRadius:$borderRadius;
+$horizontalMenuRootMenuitemTextColor:$textColor;
+$horizontalMenuRootMenuitemIconColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemTextHoverColor:$textColor;
+$horizontalMenuRootMenuitemIconHoverColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemHoverBg:rgba(0,0,0,.04);
+$horizontalMenuRootMenuitemTextActiveColor:$textColor;
+$horizontalMenuRootMenuitemIconActiveColor:$textSecondaryColor;
+$horizontalMenuRootMenuitemActiveBg:rgba(0,0,0,.04);
+
+//badge and tag
+$badgeBg:$primaryColor;
+$badgeTextColor:$primaryTextColor;
+$badgeMinWidth:1.5rem;
+$badgeHeight:1.5rem;
+$badgeFontWeight:700;
+$badgeFontSize:.75rem;
+
+$tagPadding:.25rem .4rem;
+
+//carousel
+$carouselIndicatorsPadding:1rem;
+$carouselIndicatorBg:#dcdcdc;
+$carouselIndicatorHoverBg:#ececec;
+$carouselIndicatorBorderRadius:0;
+$carouselIndicatorWidth:2rem;
+$carouselIndicatorHeight:.5rem;
+
+//galleria
+$galleriaMaskBg:rgba(0,0,0,0.9);
+$galleriaCloseIconMargin:.5rem;
+$galleriaCloseIconFontSize:2rem;
+$galleriaCloseIconBg:transparent;
+$galleriaCloseIconColor:rgba(255,255,255,.87);
+$galleriaCloseIconHoverBg:rgba(255,255,255,0.1);
+$galleriaCloseIconHoverColor:rgba(255,255,255,.87);
+$galleriaCloseIconWidth:4rem;
+$galleriaCloseIconHeight:4rem;
+$galleriaCloseIconBorderRadius:50%;
+
+$galleriaItemNavigatorBg:transparent;
+$galleriaItemNavigatorColor:#f6f6f6;
+$galleriaItemNavigatorMargin:0 .5rem;
+$galleriaItemNavigatorFontSize:2rem;
+$galleriaItemNavigatorHoverBg:rgba(255,255,255,0.1);
+$galleriaItemNavigatorHoverColor:rgba(255,255,255,.87);
+$galleriaItemNavigatorWidth:4rem;
+$galleriaItemNavigatorHeight:4rem;
+$galleriaItemNavigatorBorderRadius:50%;
+
+$galleriaCaptionBg:rgba(0,0,0,.5);
+$galleriaCaptionTextColor:rgba(255,255,255,.87);
+$galleriaCaptionPadding:1rem;
+
+$galleriaIndicatorsPadding:1rem;
+$galleriaIndicatorBg:#dcdcdc;
+$galleriaIndicatorHoverBg:#ececec;
+$galleriaIndicatorBorderRadius:50%;
+$galleriaIndicatorWidth:1.25rem;
+$galleriaIndicatorHeight:1.25rem;
+$galleriaIndicatorsBgOnItem:rgba(0,0,0,.5);
+$galleriaIndicatorBgOnItem:rgba(255,255,255,.4);
+$galleriaIndicatorHoverBgOnItem:rgba(255,255,255,.6);
+
+$galleriaThumbnailContainerBg:rgba(0,0,0,.9);
+$galleriaThumbnailContainerPadding:1rem .25rem;
+$galleriaThumbnailNavigatorBg:transparent;
+$galleriaThumbnailNavigatorColor:rgba(255,255,255,.87);
+$galleriaThumbnailNavigatorHoverBg:rgba(255,255,255,0.1);
+$galleriaThumbnailNavigatorHoverColor:rgba(255,255,255,.87);
+$galleriaThumbnailNavigatorBorderRadius:50%;
+$galleriaThumbnailNavigatorWidth:2rem;
+$galleriaThumbnailNavigatorHeight:2rem;
+
+//divider
+$dividerHorizontalMargin:1.25rem 0;
+$dividerHorizontalPadding:0 1.25rem;
+$dividerVerticalMargin:0 1.25rem;
+$dividerVerticalPadding:1.25rem 0;
+$dividerSize:1px;
+$dividerColor:rgba(0,0,0,.12);
+
+//avatar
+$avatarBg:rgba(0,0,0,.12);
+$avatarTextColor:$textColor;
+
+//chip
+$chipBg:rgba(0,0,0,.12);
+$chipTextColor:$textColor;
+$chipBorderRadius: 16px;
+
+//scrollTop
+$scrollTopBg:$accentColor;
+$scrollTopHoverBg:rgba($accentColor, .92);
+$scrollTopWidth:3rem;
+$scrollTopHeight:3rem;
+$scrollTopBorderRadius:50%;
+$scrollTopFontSize:1.5rem;
+$scrollTopTextColor:$accentTextColor;
+
+//skeleton
+$skeletonBg:rgba(0,0,0,.08);
+$skeletonAnimationBg:rgba(255,255,255,0.4);
+
+//splitter
+$splitterGutterBg:rgba(0,0,0,.04);
+$splitterGutterHandleBg:rgba(0,0,0,.12);
+
+:root &#123;
+    --surface-a:#ffffff;
+    --surface-b:#fafafa;
+    --surface-c:rgba(0,0,0,.04);
+    --surface-d:rgba(0,0,0,.12);
+    --surface-e:#ffffff;
+    --surface-f:#ffffff;
+    --text-color:#&#123;$textColor&#125;;
+    --text-color-secondary:#&#123;$textSecondaryColor&#125;;
+    --primary-color:#&#123;$primaryColor&#125;;
+    --primary-menu-text-color:#&#123;$primaryMenuTextColor&#125;;
+    --primary-lightest-color:#&#123;$primaryLightestColor&#125;;
+    --primary-color-text:#&#123;$primaryTextColor&#125;;
+    --font-family:#&#123;$fontFamily&#125;;
+&#125;
+</app-code>
+</div>
+
+            <h5>Menu Modes</h5>
+            <p>Menu has 4 modes, static, overlay, horizontal and slim. Layout container element in application.html is used to define which mode to use by adding specific classes. List
+            below indicates the style classes for each mode. In addition menu</p>
+            <ul>
+                <li>Static: "layout-menu-static"</li>
+                <li>Overlay: "layout-menu-overlay"</li>
+                <li>Horizontal: "layout-menu-horizontal"</li>
+                <li>Slim: "layout-menu-slim"</li>
+            </ul>
+
+            <p>For example to create a horizontal menu, the div element should be in following form;</p>
+<app-code ngPreserveWhitespaces ngNonBindable lang="javascript">
+&lt;div class="layout-wrapper layout-menu-horizontal"&gt;
+</app-code>
+
+            <p>It is also possible to leave the choice to the user by keeping the preference at a component and usign an expression to bind it so that user can switch between modes. Sample
+            application has an example implementation of such use case. Refer to app.component.ts for an example.</p>
+
+            <h5>Grid CSS</h5>
+            <p>Ultima uses PrimeNG Flex Grid CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Ultima Layout itself does not depend on PrimeFlex CSS.</p>
+
+            <h5>Customizing Styles</h5>
+            <p>It is suggested to add your customizations in the following sass files under the override folder instead of adding them to the
+                scss files under sass folder to avoid maintenance issues after an update.</p>
+
+            <ul>
+                <li><b>_layout_variables</b>: Variables of the layout.</li>
+                <li><b>_layout_styles</b>: Styles for the layout.</li>
+                <li><b>_theme_variables</b>: Variables of the theme.</li>
+                <li><b>_theme_styles</b>: Styles for the theme.</li>
+            </ul>
+
+            <h5>Migration Guide</h5>
+            <p>Every change is included in <b>CHANGELOG.md</b> file at the root folder of the distribution along with the instructions to update.</p>
+        </div>
+    </div>
+</div>

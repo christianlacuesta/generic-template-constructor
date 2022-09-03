@@ -1,7 +1,0 @@
-<span class="p-float-label">
-    <input id="float-input" type="text" class="w-full" pInputText> 
-    <label for="float-input">{{formItem.label}}</label>
-</span>
-<div *ngIf="formItem.required  && formControl.touched && formControl.status === 'INVALID'" class="invalid-feedback mt-2">
-    <div *ngIf="formControl.status === 'INVALID'">{{item.value.label}} is required</div>
-</div>

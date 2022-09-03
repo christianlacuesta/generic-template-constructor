@@ -1,0 +1,406 @@
+<div class="grid dashboard">
+    <div class="col-12 md:col-6 lg:col-3">
+        <div class="card overview-box flex flex-column pt-2">
+            <div class="flex align-items-center muted-text">
+                <i class="pi pi-shopping-cart"></i>
+                <h6 class="m-0" [ngClass]="{'pl-2': !app.isRTL, 'pr-2': app.isRTL}">Orders</h6>
+                <div [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu1.toggle($event)"></button>
+                    <p-menu #menu1 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between mt-3 flex-wrap">
+                <div class="flex flex-column" style="width: 80px">
+                    <span class="mb-1 fs-xlarge">640</span>
+                    <span class="overview-status p-1 teal-bgcolor fs-small">1420 Completed</span>
+                </div>
+                <div class="flex align-items-end">
+                    <p-chart type="line" [data]="overviewChartData1" [options]="overviewChartOptions1" responsive="true" height="60px" width="160px"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-3">
+        <div class="card overview-box flex flex-column pt-2">
+            <div class="flex align-items-center muted-text">
+                <i class="pi pi-dollar"></i>
+                <h6 class="m-0" [ngClass]="{'pl-2': !app.isRTL, 'pr-2': app.isRTL}">Revenue</h6>
+                <div [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu2.toggle($event)"></button>
+                    <p-menu #menu2 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between mt-3 flex-wrap">
+                <div class="flex flex-column" style="width: 80px">
+                    <span class="mb-1 fs-xlarge">$57K</span>
+                    <span class="overview-status p-1 teal-bgcolor fs-small">$9,640 Income</span>
+                </div>
+                <div class="flex align-items-end">
+                    <p-chart type="line" [data]="overviewChartData2" [options]="overviewChartOptions2" responsive="true" height="60px" width="160px"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-3">
+        <div class="card overview-box flex flex-column pt-2">
+            <div class="flex align-items-center muted-text">
+                <i class="pi pi-users"></i>
+                <h6 class="m-0" [ngClass]="{'pl-2': !app.isRTL, 'pr-2': app.isRTL}">Customers</h6>
+                <div [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu3.toggle($event)"></button>
+                    <p-menu #menu3 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between mt-3 flex-wrap">
+                <div class="flex flex-column" style="width: 80px">
+                    <span class="mb-1 fs-xlarge">8572</span>
+                    <span class="overview-status p-1 pink-bgcolor fs-small">25402 Registered</span>
+                </div>
+                <div class="flex align-items-end">
+                    <p-chart type="line" [data]="overviewChartData3" [options]="overviewChartOptions3" responsive="true" height="60px" width="160px"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6 lg:col-3">
+        <div class="card overview-box flex flex-column pt-2">
+            <div class="flex align-items-center muted-text">
+                <i class="pi pi-comments"></i>
+                <h6 class="m-0" [ngClass]="{'pl-2': !app.isRTL, 'pr-2': app.isRTL}">Comments</h6>
+                <div [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu4.toggle($event)"></button>
+                    <p-menu #menu4 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between mt-3 flex-wrap">
+                <div class="flex flex-column" style="width: 80px">
+                    <span class="mb-1 fs-xlarge">805</span>
+                    <span class="overview-status p-1 teal-bgcolor fs-small">85 Responded</span>
+                </div>
+                <div class="flex align-items-end">
+                    <p-chart type="line" [data]="overviewChartData4" [options]="overviewChartOptions4" responsive="true" height="60px" width="160px"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Contact</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu5.toggle($event)"></button>
+                    <p-menu #menu5 [popup]="true" [model]="[{label: 'New', icon: 'pi pi-fw pi-plus'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'},{label: 'Delete', icon: 'pi pi-fw pi-trash'}]"></p-menu>
+                </div>
+            </div>
+
+            <ul class="widget-list">
+                <li class="flex align-items-center py-3">
+                    <div class="person-item flex align-items-center">
+                        <img src="assets/demo/images/avatar/xuxuefeng.png">
+                        <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                            <div>Xuxue Feng</div>
+                            <small class="muted-text">feng@ultima.org</small>
+                        </div>
+                    </div>
+                    <span class="person-tag indigo-bgcolor p-1 fs-small" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">Accounting</span>
+                    <span class="person-tag orange-bgcolor p-1 fs-small" [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">Sales</span>
+                </li>
+
+                <li class="flex align-items-center py-3">
+                    <div class="person-item flex align-items-center">
+                        <img src="assets/demo/images/avatar/elwinsharvill.png">
+                        <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                            <div>Elwin Sharvill</div>
+                            <small class="muted-text">sharvill@ultima.org</small>
+                        </div>
+                    </div>
+                    <span class="person-tag teal-bgcolor p-1 fs-small" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">Finance</span>
+                    <span class="person-tag orange-bgcolor p-1 fs-small" [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">Sales</span>
+                </li>
+
+                <li class="flex align-items-center py-3">
+                    <div class="person-item flex align-items-center">
+                        <img src="assets/demo/images/avatar/avatar-1.png">
+                        <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                            <div>Anna Fali</div>
+                            <small class="muted-text">fali@ultima.org</small>
+                        </div>
+                    </div>
+                    <span class="person-tag pink-bgcolor p-1 fs-small" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">Management</span>
+                </li>
+
+                <li class="flex align-items-center py-3">
+                    <div class="person-item flex align-items-center">
+                        <img src="assets/demo/images/avatar/avatar-2.png">
+                        <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                            <div>Jon Stone</div>
+                            <small class="muted-text">stone@ultima.org</small>
+                        </div>
+                    </div>
+                    <span class="person-tag pink-bgcolor p-1 fs-small" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">Management</span>
+                    <span class="person-tag teal-bgcolor p-1 fs-small" [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">Finance</span>
+                </li>
+
+                <li class="flex align-items-center py-3">
+                    <div class="person-item flex align-items-center">
+                        <img src="assets/demo/images/avatar/avatar-3.png">
+                        <div [ngClass]="{'ml-2': !app.isRTL, 'mr-2': app.isRTL}">
+                            <div>Stephen Shaw</div>
+                            <small class="muted-text">shaw@ultima.org</small>
+                        </div>
+                    </div>
+                    <span class="person-tag teal-bgcolor p-1 fs-small" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">Finance</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Order Graph</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu6.toggle($event)"></button>
+                    <p-menu #menu6 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <p-chart type="line" [data]="ordersChart" [options]="ordersOptions" height="300px"></p-chart>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100 widget-timeline">
+            <div class="card-header">
+                <h5>Timeline</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu7.toggle($event)"></button>
+                    <p-menu #menu7 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+
+            <p-timeline [value]="timelineEvents" align="left" styleClass="customized-timeline">
+                <ng-template pTemplate="marker" let-event>
+                    <span class="custom-marker shadow-2 p-2" [style.backgroundColor]="event.color">
+                        <i class="marker-icon" [ngClass]="event.icon"></i>
+                    </span>
+                </ng-template>
+                <ng-template pTemplate="content" let-event>
+                    <p-card styleClass="mb-3" [header]="event.status" [subheader]="event.date">
+                        <img *ngIf="event.image" [src]="'assets/showcase/images/demo/product/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
+                        <p>{{event.description}}</p>
+                    </p-card>
+                </ng-template>
+            </p-timeline>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-12 lg:col-6">
+        <div class="card height-100">
+            <p-table [value]="products" [paginator]="true" [rows]="8" styleClass="p-datatable-products">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:5rem">Image</th>
+                        <th pSortableColumn="name">Name
+                            <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="category">Category
+                            <p-sortIcon field="category"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="price">Price
+                            <p-sortIcon field="price"></p-sortIcon>
+                        </th>
+                        <th style="width:4rem">View</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="50px" class="shadow-4" />
+                        </td>
+                        <td>
+                            <span class="p-column-title">Name</span>
+                            {{product.name}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Category</span>
+                            {{product.category}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Price</span>
+                            {{product.price | currency:'USD'}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">View</span>
+                            <button pRipple pButton type="button" icon="pi pi-search" class="p-button-rounded p-button-text mb-1" [ngClass]="{'mr-2': !app.isRTL, 'ml-2': app.isRTL}"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-6">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Chat</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu8.toggle($event)"></button>
+                    <p-menu #menu8 [popup]="true" [model]="[{label: 'View Media', icon: 'pi pi-fw pi-images'},{label: 'Starred Messages', icon: 'pi pi-fw pi-star'},{label: 'Search', icon: 'pi pi-fw pi-search'}]"></p-menu>
+                </div>
+            </div>
+            <div class="widget-chat">
+                <ul #chatcontainer>
+                    <li *ngFor="let chartMessage of chatMessages; let last = last;" class="flex align-items-start" [ngClass]="{'from': !!chartMessage.from, 'own justify-content-end': !chartMessage.from, 'mb-3': !last, 'mb-1': last}">
+                        <img *ngIf="!!chartMessage.url" [src]="chartMessage.url" alt="avatar" [ngClass]="{'mr-2': !app.isRTL, 'ml-2': app.isRTL}">
+                        <div class="messages flex flex-column" [ngClass]="{'align-items-start': !!chartMessage.from, 'align-items-end': !chartMessage.from}">
+                            <span *ngFor="let message of chartMessage.messages; let first = first" class="message" [ngClass]="{'cyan-bgcolor': !!chartMessage.from, 'pink-bgcolor': !chartMessage.from, 'mt-1': !first}">
+                                {{message}}
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="p-inputgroup write-message mt-3">
+                    <span class="p-inputgroup-addon">
+                        <button pButton pRipple type="button" icon="pi pi-plus-circle" class="p-button-text p-button-plain"></button>
+                    </span>
+                    <input #chatInput type="text" pInputText placeholder="Write your message (Hint: 'PrimeNG')" (keydown)="onChatKeydown($event)">
+                    <span class="p-inputgroup-addon">
+                        <button pButton pRipple type="button" icon="pi pi-video" class="p-button-text p-button-plain"></button>
+                    </span>
+                    <span class="p-inputgroup-addon">
+                        <button pButton pRipple type="button" icon="pi pi-clock" (click)="op.toggle($event)" class="p-button-text p-button-plain"></button>
+                        <p-overlayPanel #op styleClass="emoji">
+                            <ng-template pTemplate>
+                                <button *ngFor="let emoji of chatEmojis;" pButton pRipple (click)="op.hide(); onEmojiClick(chatInput, emoji)" type="button" [label]="emoji" class="emoji-button p-2 p-button-text p-button-plain"></button>
+                            </ng-template>
+                        </p-overlayPanel>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-3">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Activity</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu9.toggle($event)"></button>
+                    <p-menu #menu9 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+
+            <ul class="widget-activity">
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Income</div>
+                        <div class="activity-subtext mb-2">30 November, 16.20</div>
+                        <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Tax</div>
+                        <div class="activity-subtext mb-2">1 December, 15.27</div>
+                        <p-progressBar [value]="15" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Invoices</div>
+                        <div class="activity-subtext mb-2">1 December, 15.28</div>
+                        <p-progressBar [value]="78" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Expanses</div>
+                        <div class="activity-subtext mb-2">3 December, 09.15</div>
+                        <p-progressBar [value]="66" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Bonus</div>
+                        <div class="activity-subtext mb-2">1 December, 23.55</div>
+                        <p-progressBar [value]="85" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+                <li>
+                    <div class="activity-item flex flex-column">
+                        <div class="activity-title mb-1">Revenue</div>
+                        <div class="activity-subtext mb-2">30 November, 16.20</div>
+                        <p-progressBar [value]="54" [showValue]="false"></p-progressBar>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-3">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Best Sellers</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu10.toggle($event)"></button>
+                    <p-menu #menu10 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <ul class="widget-bestsellers">
+                <li>
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/blue-band.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Blue Band</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/bracelet.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Bracelet</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/black-watch.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Black Watch</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/bamboo-watch.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Bamboo Watch</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/blue-t-shirt.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Blue T-Shirt</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/game-controller.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Game Controller</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/gold-phone-case.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Phone Case</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+
+                    <div class="bestseller-item flex align-items-center p-3 mb-2">
+                        <img src="assets/demo/images/product/purple-t-shirt.jpg" alt="product" [ngClass]="{'mr-3': !app.isRTL, 'ml-3': app.isRTL}">
+                        <span>Purple T-Shirt</span>
+                        <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

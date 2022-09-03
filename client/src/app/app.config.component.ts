@@ -1,17 +1,15 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { AppComponent } from './app.component';
-import { AppMainComponent } from './app.main.component';
-
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AppComponent} from './app.component';
+import {AppMainComponent} from './app.main.component';
+import {Subscription} from 'rxjs';
 @Component({
     selector: 'app-config',
     template: `
         <p-sidebar #sidebar [(visible)]="configActive" [position]="app.isRTL ? 'left' : 'right'" [blockScroll]="true" [showCloseIcon]="false" [baseZIndex]="1000" styleClass="layout-config p-sidebar-sm fs-small p-0">
             <div class="layout-config-panel flex flex-column">
                 <div class="px-3 pt-3">
-                    <h5>App Customization</h5>
-                    <span>Customize the look and Feel of the app according to your taste.</span>
+                    <h5>Theme Customization</h5>
+                    <span>Ultima offers different themes for layout, topbar, menu etc.</span>
                 </div>
 
                 <hr class="mb-0" />
@@ -134,37 +132,40 @@ import { AppMainComponent } from './app.main.component';
             </div>
         </p-sidebar>
 
-        <p-button type="button" (click)="onConfigActive()" icon="pi pi-cog" *ngIf="!configActive" styleClass="layout-config-button"></p-button>
+        <p-button type="button" (click)="configActive = true" icon="pi pi-cog" *ngIf="!configActive" styleClass="layout-config-button"></p-button>
     `
 })
-export class AppConfigComponent implements OnInit, OnDestroy {
+export class AppConfigComponent implements OnInit {
 
-    scale = 12;
+    scale = 14;
+
     scales: number[] = [12, 13, 14, 15, 16];
+
     themes: any[];
+
     menuThemes: any[];
+
     menuTheme = 'light';
+
     topbarThemes: any[];
+
     topbarTheme = 'blue';
+
     theme = 'indigo';
+
     matchingMenuTheme = false;
+
     matchingTopbarTheme = false;
+
     selectedMenuTheme: any;
+
     selectedTopbarTheme: any;
+
     configActive = false;
+
     isInputBackgroundChanged = false;
 
-    configActive$ = new BehaviorSubject<Boolean>(false);
-
-    logo: string = 'assets/layout/images/logo-light.svg';
-
-    organization$: Observable<any>;
-    organizationSub: Subscription;
-    routeSub: Subscription;
-
-    constructor(public appMain: AppMainComponent, 
-                public app: AppComponent,
-                private route: ActivatedRoute) {}
+    constructor(public appMain: AppMainComponent, public app: AppComponent) {}
 
     ngOnInit() {
         this.themes = [
@@ -227,15 +228,6 @@ export class AppConfigComponent implements OnInit, OnDestroy {
 
         this.selectedMenuTheme = this.menuThemes.find(theme => theme.name === this.menuTheme);
         this.selectedTopbarTheme = this.topbarThemes.find(theme => theme.name === this.topbarTheme);
-
-        this.applyScale();
-
-
-    }
-
-    onConfigActive() {
-        this.configActive$.next(true);
-        this.configActive = true;
     }
 
     decrementScale() {
@@ -250,8 +242,6 @@ export class AppConfigComponent implements OnInit, OnDestroy {
 
     applyScale() {
         document.documentElement.style.fontSize = this.scale + 'px';
-        document.documentElement.style.padding = '1px';
-        document.documentElement.style.margin = '1px';
     }
 
     onInputStyleClick() {
@@ -269,12 +259,12 @@ export class AppConfigComponent implements OnInit, OnDestroy {
         if (mode === 'dark') {
             this.app.menuTheme = 'dark';
             this.app.topbarTheme = 'dark';
-            appLogoLink.src = this.logo;
+            appLogoLink.src = 'assets/layout/images/logo-light.svg';
         }
         else {
             this.app.menuTheme = 'light';
             this.app.topbarTheme = 'blue';
-            appLogoLink.src = this.logo;
+            appLogoLink.src = 'assets/layout/images/logo-light.svg';
         }
 
         const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
@@ -345,9 +335,5 @@ export class AppConfigComponent implements OnInit, OnDestroy {
                 }
             });
         }
-    }
-
-    ngOnDestroy(): void {
-        if (this.organizationSub) { this.organizationSub.unsubscribe()}
     }
 }

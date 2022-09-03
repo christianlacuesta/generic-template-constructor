@@ -83,6 +83,7 @@ class HotModuleReplacementPlugin {
 	 * @returns {void}
 	 */
 	apply(compiler) {
+		const { _backCompat: backCompat } = compiler;
 		if (compiler.options.output.strictModuleErrorHandling === undefined)
 			compiler.options.output.strictModuleErrorHandling = true;
 		const runtimeRequirements = [RuntimeGlobals.module];
@@ -495,6 +496,7 @@ class HotModuleReplacementPlugin {
 							let newModules;
 							let newRuntimeModules;
 							let newFullHashModules;
+							let newDependentHashModules;
 							let newRuntime;
 							let removedFromRuntime;
 							const currentChunk = find(
@@ -519,6 +521,13 @@ class HotModuleReplacementPlugin {
 								newFullHashModules =
 									fullHashModules &&
 									Array.from(fullHashModules).filter(module =>
+										updatedModules.has(module, currentChunk)
+									);
+								const dependentHashModules =
+									chunkGraph.getChunkDependentHashModulesIterable(currentChunk);
+								newDependentHashModules =
+									dependentHashModules &&
+									Array.from(dependentHashModules).filter(module =>
 										updatedModules.has(module, currentChunk)
 									);
 								removedFromRuntime = subtractRuntime(oldRuntime, newRuntime);
@@ -589,7 +598,8 @@ class HotModuleReplacementPlugin {
 								(newRuntimeModules && newRuntimeModules.length > 0)
 							) {
 								const hotUpdateChunk = new HotUpdateChunk();
-								ChunkGraph.setChunkGraphForChunk(hotUpdateChunk, chunkGraph);
+								if (backCompat)
+									ChunkGraph.setChunkGraphForChunk(hotUpdateChunk, chunkGraph);
 								hotUpdateChunk.id = chunkId;
 								hotUpdateChunk.runtime = newRuntime;
 								if (currentChunk) {
@@ -605,6 +615,12 @@ class HotModuleReplacementPlugin {
 									chunkGraph.attachFullHashModules(
 										hotUpdateChunk,
 										newFullHashModules
+									);
+								}
+								if (newDependentHashModules) {
+									chunkGraph.attachDependentHashModules(
+										hotUpdateChunk,
+										newDependentHashModules
 									);
 								}
 								const renderManifest = compilation.getRenderManifest({

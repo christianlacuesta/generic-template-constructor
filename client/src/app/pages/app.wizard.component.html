@@ -1,0 +1,359 @@
+<body class="wizard-body">
+    <div class="wizard-wrapper">
+        <div class="wizard-topbar">
+            <div class="logo" [routerLink]="['/']"></div>
+            <div class="profile">
+                <div class="profile-text">
+                    <h1>Welcome to Ultima</h1>
+                    <p>Please complete steps to register</p>
+                </div>
+                <img class="profile-image" src="assets/layout/images/extensions/flag-us@2x.png" alt="ultima-layout" />
+            </div>
+        </div>
+
+        <div class="wizard-content">
+            <div class="wizard-card">
+                <div class="wizard-card-header">
+                    <div class="grid col">
+                        <div class="col-4 tab register-tab" [ngClass]="{'selected-tab': activeTab == 'register'}" (click)="clickNext('register')">
+                            <div class="icon">
+                                <i class="pi pi-sign-in"></i>
+                            </div>
+                            <div class="title">REGISTER</div>
+                        </div>
+                        <div class="col-4 tab tier-tab" [ngClass]="{'selected-tab': activeTab === 'tier'}" (click)="clickNext('tier')">
+                            <div class="icon">
+                                <i class="pi pi-clone"></i>
+                            </div>
+                            <div class="title">CHOOSE TIER</div>
+                        </div>
+                        <div class="col-4 tab payment-tab" [ngClass]="{'selected-tab': activeTab === 'payment'}" (click)="clickNext('payment')">
+                            <div class="icon">
+                                <i class="pi pi-shopping-cart"></i>
+                            </div>
+                            <div class="title">PAYMENT</div>
+                        </div>
+                        <div class="tab-bar" [@tabBar]="activeTab==='register'?'register':activeTab==='tier'?'tier':'payment'"></div>
+                    </div>
+                </div>
+                <div class="wizard-card-content register" [ngClass]="{'active-content': activeTab === 'register'}">
+                    <div class="grid ">
+                        <div class="col-12  lg:col-6">
+                            <h1>ESSENTIAL INFORMATION</h1>
+                            <div class="forms">
+                                <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+											<i class="pi pi-user"></i>
+                                        </span>
+                                    <span class="p-float-label">
+                                <input id="name" type="text" pInputText/>
+                                <label for="name">Username</label>
+                                    </span>
+                                </div>
+                                <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+											<i class="pi pi-user"></i>
+                                        </span>
+                                    <span class="p-float-label">
+                                <input id="email" type="text" pInputText/>
+                                <label for="email">Email</label>
+                                    </span>
+                                </div>
+                                <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+											<i class="pi pi-sign-in"></i>
+                                        </span>
+                                    <span class="p-float-label">
+                                <input id="password" type="password" pInputText/>
+                                <label for="password">Password</label>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 lg:col-6">
+                            <h1>OPTIONAL</h1>
+                            <div class="forms">
+                                <p-dropdown id="timezone" [style]="{'margin-bottom':'10px'}" [options]="dropdownOptions1" [(ngModel)]="selectDropdownOptions1"></p-dropdown>
+
+                                <div class="calendar">
+                                    <p-calendar id="button" [(ngModel)]="birthdate" placeholder="Birthdate" [showIcon]="true" appendTo="body"></p-calendar>
+                                </div>
+
+                                <p-dropdown id="ultima" [options]="dropdownOptions2" [(ngModel)]="selectDropdownOptions2" appendTo="body" [style]="{'margin-bottom':'10px'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button pButton pRipple class="continue-button" type="button" label="CONTINUE" (click)="clickNext('tier')"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-card-content tier" [ngClass]="{'active-content': activeTab === 'tier'}">
+                    <div class="grid ">
+                        <div class="col-12 md:col-6 lg:col-4">
+                            <div class="card basic">
+                                <div class="card-header">
+                                    <div class="grid">
+                                        <div class="col-8">
+                                            <h1>BASIC</h1>
+                                        </div>
+                                        <div class="col-4">
+                                            <h1>$5</h1>
+                                            <span>/m</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                        <div class="card-row grid">
+                                            <div class="col-3">
+                                                <i class="pi pi-fw pi-check"></i>
+                                            </div>
+                                            <div class="col-9">Responsive</div>
+                                        </div>
+                                        <div class="card-row grid">
+                                            <div class="col-3">
+                                                <i class="pi pi-fw pi-check"></i>
+                                            </div>
+                                            <div class="col-9">Push Messages</div>
+                                        </div>
+                                    <div class="col-12 tier-button-wrapper">
+                                        <button pButton pRipple class="tier-button basic" type="button" label="BASIC" (click)="selectTier('basic')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-4">
+                            <div class="card pro">
+                                <div class="card-header">
+                                    <div class="grid">
+                                        <div class="col-7">
+                                            <h1>PRO</h1>
+                                        </div>
+                                        <div class="col-5">
+                                            <h1>$25</h1>
+                                            <span>/m</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Responsive</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Push Messages</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">7/24 Support</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Free Shipping</div>
+                                    </div>
+                                    <div class="col-12 tier-button-wrapper">
+                                        <button pButton pRipple class="tier-button pro" type="button" label="SELECT PRO" (click)="selectTier('pro')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 md:col-6 lg:col-4">
+                            <div class="card pro-plus">
+                                <div class="card-header">
+                                    <div class="grid">
+                                        <div class="col-7">
+                                            <h1>PRO+</h1>
+                                        </div>
+                                        <div class="col-5">
+                                            <h1>$50</h1>
+                                            <span>/m</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Responsive</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Push Messages</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">7/24 Support</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Free Shipping</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Unlimited BW</div>
+                                    </div>
+                                    <div class="card-row grid">
+                                        <div class="col-3">
+                                            <i class="pi pi-fw pi-check"></i>
+                                        </div>
+                                        <div class="col-9">Special Gift Cards</div>
+                                    </div>
+                                    <div class="col-12 tier-button-wrapper">
+                                        <button pButton pRipple class="tier-button pro-plus" type="button" label="SELECT PRO+" (click)="selectTier('pro-plus')"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-card-content payment" [ngClass]="{'active-content': activeTab === 'payment'}">
+                    <div class="grid grid-nogutter">
+                        <div class="lg:col-8 col-12 payment-info">
+                            <div class="grid col" id="customPanel">
+                                    <div class="col-1 lg:col-1 md:col-1" style="line-height: 2em">
+                                        <p-radioButton name="group1" value="Credit" [(ngModel)]="radioButton1" inputId="credit"></p-radioButton>
+                                    </div>
+                                    <div class="col-11 lg:col-5 md:col-5">
+                                        <div class="credits">
+                                            <img src="assets/layout/images/extensions/asset-mastercard.svg" alt="ultima-layout" />
+                                            <img src="assets/layout/images/extensions/asset-visa.svg" alt="ultima-layout" />
+                                            <img src="assets/layout/images/extensions/asset-amex.svg" alt="ultima-layout" />
+                                        </div>
+                                    </div>
+                                    <div class="col-1 lg:col-1 md:col-1" style="line-height: 2em">
+                                        <p-radioButton name="group1" value="Paypal" [(ngModel)]="radioButton1" inputId="paypal"></p-radioButton>
+                                    </div>
+                                    <div class="col-11 lg:col-5 md:col-5">
+                                        <div class="paypal">
+                                            <img src="assets/layout/images/extensions/asset-paypal.svg" alt="ultima-layout" />
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="grid col">
+                                <div class="col-12">
+                                    <span class="p-float-label">
+                                        <input pInputText type="text"/>
+                                        <label>Card Holder Name </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="grid col">
+                                <div class="col-6">
+                                    <span class="p-float-label">
+                                        <input pInputText type="text"/>
+                                        <label>Card No</label>
+                                    </span>
+                                </div>
+                                <div class="col-3">
+                                    <span class="p-float-label">
+                                        <input pInputText type="text"/>
+                                        <label>Date</label>
+                                    </span>
+                                </div>
+                                <div class="col-3">
+                                    <span class="p-float-label">
+                                        <input pInputText type="text"/>
+                                        <label>CCV</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="grid col check-info">
+                                <p-checkbox [(ngModel)]="checked" binary="true" label="Save credit card information for future usage"></p-checkbox>
+                            </div>
+                        </div>
+                        <div class="lg:col-4 col-12 order-info">
+                            <div class="grid col">
+                                <div class="col-12">
+                                    <h1>ORDER SUMMARY</h1>
+                                </div>
+                            </div>
+                            <div class="order order-default" [ngClass]="{'selected-order': activeCard === ''}">
+                                <div class="grid col">
+                                    <div class="col-8">Tier - </div>
+                                    <div class="col-4 price">$0.00</div>
+                                    <div class="col-8">VAT (%18)</div>
+                                    <div class="col-4 price">$0.00</div>
+                                </div>
+                                <div class="grid col total">
+                                    <div class="col-8">Total</div>
+                                    <div class="col-4 price">$0.00</div>
+                                    <div class="col-12">
+                                        Please select one tier.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order order-basic" [ngClass]="{'selected-order': activeCard === 'basic'}">
+                                <div class="grid col">
+                                    <div class="col-8">Tier - Basic</div>
+                                    <div class="col-4 price">$5.00</div>
+                                    <div class="col-8">VAT (%18)</div>
+                                    <div class="col-4 price">$0.90</div>
+                                </div>
+                                <div class="grid col total">
+                                    <div class="col-8">Total</div>
+                                    <div class="col-4 price">$5.90</div>
+                                    <div class="col-12">
+                                        <p-button type="button" label="CONFIRM ORDER" styleClass="buy-button" ></p-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order order-pro" [ngClass]="{'selected-order': activeCard === 'pro'}">
+                                <div class="grid col">
+                                    <div class="col-8">Tier - Pro</div>
+                                    <div class="col-4 price">$25.00</div>
+                                    <div class="col-8">VAT (%18)</div>
+                                    <div class="col-4 price">$4.50</div>
+                                </div>
+                                <div class="grid col total">
+                                    <div class="col-8">Total</div>
+                                    <div class="col-4 price">$29.50</div>
+                                    <div class="col-12">
+                                        <p-button type="button" label="CONFIRM ORDER" styleClass="buy-button" ></p-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order order-pro-plus" [ngClass]="{'selected-order': activeCard === 'pro-plus'}">
+                                <div class="grid col">
+                                    <div class="col-8">Tier - Pro+</div>
+                                    <div class="col-4 price">$50.00</div>
+                                    <div class="col-8">VAT (%18)</div>
+                                    <div class="col-4 price">$9.00</div>
+                                </div>
+                                <div class="grid col total">
+                                    <div class="col-8">Total</div>
+                                    <div class="col-4 price">$59.00</div>
+                                    <div class="col-12">
+                                        <p-button type="button" label="CONFIRM ORDER" styleClass="buy-button" ></p-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,358 @@
+<div class="grid dashboard">
+    <div class="col-12 md:col-8">
+        <div class="card height-100">
+            <div class="card-header">
+                <h5>Monthly Comparison</h5>
+                <button pRipple pButton type="button" label="Vertical/Stacked Data" class="p-button-text" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}" (click)="changeMonthlyDataView()"></button>
+            </div>
+
+            <p-chart #bar type="bar" [data]="chartMonthlyData" [options]="chartMonthlyOptions" responsive="true" height="400px"></p-chart>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <div class="card widget-insights height-100">
+            <div class="card-header mb-2">
+                <h5>Insights</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu11.toggle($event)"></button>
+                    <p-menu #menu11 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="card-subheader mb-2 flex align-items-center">
+                <span>November 22 - November 29</span>
+                <button pRipple pButton type="button" label="Semi/Full Data" class="p-button-text" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}" (click)="changeDoughnutDataView()"></button>
+            </div>
+            <p-chart #doughnut type="doughnut" [data]="doughnutData" [options]="doughnutOptions" responsive="true" height="200px"></p-chart>
+            <div class="flex flex-column justify-content-center">
+                <div class="flex flex-row align-items-center mt-4 px-3">
+                    <i class="pi pi-thumbs-up p-3 rounded-circle lightgreen-bgcolor solid-surface-text-color"></i>
+                    <div class="flex flex-column" [ngClass]="{'ml-3': !app.isRTL, 'mr-3': app.isRTL}">
+                        <span>Best Day of the Week</span>
+                        <small>Friday</small>
+                    </div>
+                    <span class="indigo-color" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">95</span>
+                </div>
+                <div class="flex flex-row align-items-center my-4 px-3">
+                    <i class="pi pi-thumbs-down rounded-circle p-3 orange-bgcolor solid-surface-text-color"></i>
+                    <div class="flex flex-column" [ngClass]="{'ml-3': !app.isRTL, 'mr-3': app.isRTL}">
+                        <span>Worst Day of the Week</span>
+                        <small>Saturday</small>
+                    </div>
+                    <span class="indigo-color" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">6</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <div class="card widget-social">
+            <div class="flex justify-content-between align-items-center p-3">
+                <div class="social-icon">
+                    <i class="pi pi-twitter blue-color fs-xxlarge"></i>
+                </div>
+                <div class="info flex flex-column">
+                    <span class="value">44.995</span>
+                    <span class="subtext mt-2">Retweets</span>
+                </div>
+            </div>
+
+            <div class="stats flex justify-content-between mt-3">
+                <div class="left flex flex-column ">
+                    <span class="title">Target</span>
+                    <span class="value mb-2">10.000</span>
+                    <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
+                </div>
+                <div class="right flex flex-column">
+                    <span class="title">All Time Record</span>
+                    <span class="value mb-2">50.702</span>
+                    <p-progressBar [value]="24" [showValue]="false"></p-progressBar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <div class="card widget-social">
+            <div class="flex justify-content-between align-items-center p-3">
+                <div class="social-icon">
+                    <i class="pi pi-facebook indigo-color fs-xxlarge"></i>
+                </div>
+                <div class="info flex flex-column">
+                    <span class="value">44.995</span>
+                    <span class="subtext mt-2">Facebook Interactions</span>
+                </div>
+            </div>
+
+            <div class="stats flex justify-content-between mt-3">
+                <div class="left flex flex-column ">
+                    <span class="title">Target</span>
+                    <span class="value mb-2">10.000</span>
+                    <p-progressBar [value]="23" [showValue]="false"></p-progressBar>
+                </div>
+                <div class="right flex flex-column">
+                    <span class="title">All Time Record</span>
+                    <span class="value mb-2">99.028</span>
+                    <p-progressBar [value]="38" [showValue]="false"></p-progressBar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <div class="card widget-social">
+            <div class="flex justify-content-between align-items-center p-3">
+                <div class="social-icon">
+                    <i class="pi pi-github text-color fs-xxlarge"></i>
+                </div>
+                <div class="info flex flex-column">
+                    <span class="value">81.002</span>
+                    <span class="subtext mt-2">Star</span>
+                </div>
+            </div>
+
+            <div class="stats flex justify-content-between mt-3">
+                <div class="left flex flex-column ">
+                    <span class="title">Target</span>
+                    <span class="value mb-2">10.000</span>
+                    <p-progressBar [value]="62" [showValue]="false"></p-progressBar>
+                </div>
+                <div class="right flex flex-column">
+                    <span class="title">All Time Record</span>
+                    <span class="value mb-2">162.550</span>
+                    <p-progressBar [value]="14" [showValue]="false"></p-progressBar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-12">
+        <div class="card grid grid-nogutter widget-sales block sm:flex">
+            <div class="lg:col-3 md:col-6 sm:col-12 p-0">
+                <div class="sales-info flex flex-column p-4">
+                    <span class="muted-text">Store A Sales</span>
+                    <span class="fs-large mt-2">
+                        <i *ngIf="storeADiff !== 0" class="fw-700 fs-large pi" [ngClass]="{'pr-1': !app.isRTL, 'pl-1': app.isRTL, 'pi-arrow-up green-color': storeADiff > 0, 'pi-arrow-down pink-color': storeADiff < 0}"></i>
+                        ${{storeATotalValue}}
+                        <span *ngIf="storeADiff !== 0" class="fw-500 fs-normal" [ngClass]="{'ml-1': !app.isRTL, 'mr-1': app.isRTL, 'green-color': storeADiff > 0, 'pink-color': storeADiff < 0}">
+                            {{storeADiff > 0 ? '+' : ''}}{{storeADiff}}
+                        </span>
+                    </span>
+                </div>
+                <div class="px-4">
+                    <p-chart #storeA type="line" [data]="storeAData" [options]="storeAOptions" responsive="true"></p-chart>
+                </div>
+            </div>
+            <div class="lg:col-3 md:col-6 sm:col-12 p-0">
+                <div class="sales-info flex flex-column p-4">
+                    <span class="muted-text">Store B Sales</span>
+                    <span class="fs-large mt-2">
+                        <i *ngIf="storeBDiff !== 0" class="fw-700 fs-large pi" [ngClass]="{'pr-1': !app.isRTL, 'pl-1': app.isRTL, 'pi-arrow-up green-color': storeBDiff > 0, 'pi-arrow-down pink-color': storeBDiff < 0}"></i>
+                        ${{storeBTotalValue}}
+                        <span *ngIf="storeBDiff !== 0" class="fw-500 fs-normal" [ngClass]="{'ml-1': !app.isRTL, 'mr-1': app.isRTL,'green-color': storeBDiff > 0, 'pink-color': storeBDiff < 0}">
+                            {{storeBDiff > 0 ? '+' : ''}}{{storeBDiff}}
+                        </span>
+                    </span>
+                </div>
+                <div class="px-4">
+                    <p-chart #storeB type="line" [data]="storeBData" [options]="storeBOptions" responsive="true"></p-chart>
+                </div>
+            </div>
+            <div class="lg:col-3 md:col-6 sm:col-12 p-0">
+                <div class="sales-info flex flex-column p-4">
+                    <span class="muted-text">Store C Sales</span>
+                    <span class="fs-large mt-2">
+                        <i *ngIf="storeCDiff !== 0" class="fw-700 fs-large pi" [ngClass]="{'pr-1': !app.isRTL, 'pl-1': app.isRTL, 'pi-arrow-up green-color': storeCDiff > 0, 'pi-arrow-down pink-color': storeCDiff < 0}"></i>
+                        ${{storeCTotalValue}}
+                        <span *ngIf="storeCDiff !== 0" class="fw-500 fs-normal" [ngClass]="{'ml-1': !app.isRTL, 'mr-1': app.isRTL, 'green-color': storeCDiff > 0, 'pink-color': storeCDiff < 0}">
+                            {{storeCDiff > 0 ? '+' : ''}}{{storeCDiff}}
+                        </span>
+                    </span>
+                </div>
+                <div class="px-4">
+                    <p-chart #storeC type="line" [data]="storeCData" [options]="storeCOptions" responsive="true"></p-chart>
+                </div>
+            </div>
+            <div class="lg:col-3 md:col-6 sm:col-12 p-0">
+                <div class="sales-info flex flex-column p-4">
+                    <span class="muted-text">Store D Sales</span>
+                    <span class="fs-large mt-2">
+                        <i *ngIf="storeDDiff !== 0" class="fw-700 fs-large pi" [ngClass]="{'pr-1': !app.isRTL, 'pl-1': app.isRTL, 'pi-arrow-up green-color': storeDDiff > 0, 'pi-arrow-down pink-color': storeDDiff < 0}"></i>
+                        ${{storeDTotalValue}}
+                        <span *ngIf="storeDDiff !== 0" class="fw-500 fs-normal" [ngClass]="{'ml-1': !app.isRTL, 'mr-1': app.isRTL, 'green-color': storeDDiff > 0, 'pink-color': storeDDiff < 0}">
+                            {{storeDDiff > 0 ? '+' : ''}}{{storeDDiff}}
+                        </span>
+                    </span>
+                </div>
+                <div class="px-4">
+                    <p-chart #storeD type="line" [data]="storeDData" [options]="storeDOptions" responsive="true"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="card height-100 widget-topsearchs">
+            <div class=card-header>
+                <h5>Top Searchs</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu12.toggle($event)"></button>
+                    <p-menu #menu12 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Mat Orange Case</span>
+                <span class="value type-green">82% CONV RATE</span>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Space T-Shirt</span>
+                <span class="value type-green">78% CONV RATE</span>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Orange Black Hoodie</span>
+                <span class="value type-green">61% CONV RATE</span>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Wonders Notebook</span>
+                <span class="value type-yellow">48 CONV RATE</span>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Robots T-Shirt</span>
+                <span class="value type-yellow">34% CONV RATE</span>
+            </div>
+            <div class="flex justify-content-between item">
+                <span>Green Portal Sticker</span>
+                <span class="value type-pink">11% CONV RATE</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <div class="card">
+            <p-table [value]="products" [paginator]="true" [rows]="4" styleClass="p-datatable-products">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:5rem">Image</th>
+                        <th pSortableColumn="name">Name
+                            <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="category">Category
+                            <p-sortIcon field="category"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="price">Price
+                            <p-sortIcon field="price"></p-sortIcon>
+                        </th>
+                        <th style="width:4rem">View</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>
+                            <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.image" width="50px" class="shadow-4" />
+                        </td>
+                        <td>
+                            <span class="p-column-title">Name</span>
+                            {{product.name}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Category</span>
+                            {{product.category}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">Price</span>
+                            {{product.price | currency:'USD'}}
+                        </td>
+                        <td>
+                            <span class="p-column-title">View</span>
+                            <button pRipple pButton type="button" icon="pi pi-search" class="p-button-rounded p-button-text mb-1" [ngClass]="{'mr-2': !app.isRTL, 'ml-2': app.isRTL}"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <div class="card widget-expenses">
+            <div class=card-header>
+                <h5>Expenses</h5>
+                <div>
+                    <button pButton pRipple type="button" icon="pi pi-ellipsis-h" class="p-button-rounded p-button-text p-button-plain" (click)="menu13.toggle($event)"></button>
+                    <p-menu #menu13 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+                </div>
+            </div>
+            <div class="card-subheader mb-2 pb-3">
+                November 22 - November 29
+            </div>
+
+            <div class="flex justify-content-between align-items-center my-2 item">
+                <div class="flex flex-column">
+                    <i class="pi pi-cloud type mb-2"></i>
+                    <span class="value mb-1">$30.247</span>
+                    <span class="subtext">Cloud Infrastructure</span>
+                </div>
+                <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+            </div>
+            <div class="flex justify-content-between align-items-center my-2 item">
+                <div class="flex flex-column">
+                    <i class="pi pi-tag type mb-2"></i>
+                    <span class="value mb-1">$29.550</span>
+                    <span class="subtext">General Goods</span>
+                </div>
+                <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+            </div>
+            <div class="flex justify-content-between align-items-center my-2 item">
+                <div class="flex flex-column">
+                    <i class="pi pi-desktop type mb-2"></i>
+                    <span class="value mb-1">$16.660</span>
+                    <span class="subtext">Consumer Electronics</span>
+                </div>
+                <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+            </div>
+            <div class="flex justify-content-between align-items-center my-2 item">
+                <div class="flex flex-column">
+                    <i class="pi pi-compass type mb-2"></i>
+                    <span class="value mb-1">$5.801</span>
+                    <span class="subtext">Incalculables</span>
+                </div>
+                <span class="item-button"><a href="#"><i class="pi pi-chevron-right"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 md:col-8">
+        <div class="card widget-traffic height-100">
+            <div class="card-header">
+                <h5>All Traffic Channels</h5>
+                <button pRipple pButton type="button" label="Pie/Doughnut Data" class="p-button-text" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}" (click)="togglePieDoughnut()"></button>
+                <button pRipple pButton type="button" label="Semi/Full Data" class="p-button-text mx-2" (click)="changePieDoughnutDataView()"></button>
+            </div>
+            <div class="flex grid">
+                <div class="col-12 md:col-6 left flex flex-column justify-content-evenly">
+                    <div class="total flex flex-column">
+                        <span class="title mb-2">Total</span>
+                        <span class="value mb-5">66.761</span>
+                    </div>
+
+                    <div class="info flex justify-content-between">
+                        <div class="organic flex flex-column">
+                            <span class="title mb-1">Organic</span>
+                            <span class="value">51.596</span>
+                        </div>
+                        <div class="direct flex flex-column">
+                            <span class="title mb-1">Direct</span>
+                            <span class="value">11.421</span>
+                        </div>
+                        <div class="referral flex flex-column">
+                            <span class="title mb-1">Referral</span>
+                            <span class="value">3.862</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 md:col-6 right flex justify-content-center">
+                    <p-chart #pie type="pie" [data]="pieData" [options]="pieOptions" [style]="{'width': '70%'}"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

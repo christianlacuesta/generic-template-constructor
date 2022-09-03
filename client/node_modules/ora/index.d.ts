@@ -1,4 +1,3 @@
-/// <reference types="node"/>
 import {SpinnerName} from 'cli-spinners';
 
 declare namespace ora {

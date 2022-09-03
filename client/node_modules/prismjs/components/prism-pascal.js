@@ -5,14 +5,24 @@
 */
 
 Prism.languages.pascal = {
-	'comment': [
-		/\(\*[\s\S]+?\*\)/,
-		/\{[\s\S]+?\}/,
-		/\/\/.*/
-	],
-	'string': {
-		pattern: /(?:'(?:''|[^'\r\n])*'|#[&$%]?[a-f\d]+)+|\^[a-z]/i,
+	'directive': {
+		pattern: /\{\$[\s\S]*?\}/,
+		greedy: true,
+		alias: ['marco', 'property']
+	},
+	'comment': {
+		pattern: /\(\*[\s\S]*?\*\)|\{[\s\S]*?\}|\/\/.*/,
 		greedy: true
+	},
+	'string': {
+		pattern: /(?:'(?:''|[^'\r\n])*'(?!')|#[&$%]?[a-f\d]+)+|\^[a-z]/i,
+		greedy: true
+	},
+	'asm': {
+		pattern: /(\basm\b)[\s\S]+?(?=\bend\s*[;[])/i,
+		lookbehind: true,
+		greedy: true,
+		inside: null // see below
 	},
 	'keyword': [
 		{
@@ -38,12 +48,12 @@ Prism.languages.pascal = {
 	],
 	'number': [
 		// Hexadecimal, octal and binary
-		/[+-]?(?:[&%]\d+|\$[a-f\d]+)/i,
+		/(?:[&%]\d+|\$[a-f\d]+)/i,
 		// Decimal
-		/([+-]|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
+		/\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	],
 	'operator': [
-		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/i,
+		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/,
 		{
 			pattern: /(^|[^&])\b(?:and|as|div|exclude|in|include|is|mod|not|or|shl|shr|xor)\b/,
 			lookbehind: true
@@ -51,3 +61,11 @@ Prism.languages.pascal = {
 	],
 	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
 };
+
+Prism.languages.pascal.asm.inside = Prism.languages.extend('pascal', {
+	'asm': undefined,
+	'keyword': undefined,
+	'operator': undefined
+});
+
+Prism.languages.objectpascal = Prism.languages.pascal;

@@ -1,0 +1,32 @@
+<p-card>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+        <div class="grid formgrid">
+            <div *ngFor="let item of formConfig" [class]="item.width">
+
+                <div *ngIf="item.type.name === 'textBox'">
+                    <app-textbox [formItem]="item"></app-textbox>
+                </div>
+
+                <div *ngIf="item.type.name === 'dropDown'">
+                    <app-dropdown [formItem]="item"></app-dropdown>
+                </div>
+
+            </div>
+        </div>
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <button pButton 
+                type="button" 
+                type="button" 
+                class="p-button-secondary" 
+                [label]="'Back'" 
+                icon="pi pi-arrow-left"
+                (click)="onBack()">
+                </button>
+            </div>
+            <div class="p-toolbar-group-right">
+                <button pButton type="button" type="submit" class="p-button-primary" [label]="'Submit - ' + tableName" icon="pi pi-save"></button>
+            </div>
+        </p-toolbar>
+    </form>
+</p-card>

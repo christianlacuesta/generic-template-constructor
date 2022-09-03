@@ -1,0 +1,21 @@
+{
+    "data": [
+        {
+            "interfaceId": 0,
+            "systemId": 0,
+            "organizationId": 0, 
+            "name": "Interface 0",
+            "description": "",
+            "type": "Workflow Engine",
+            "theme": "",      
+            "icon": "",
+            "config": [],
+            "createdAt": "2021-7-12",
+            "updatedAt": "2021-7-12",
+            "createdById": "0000000",
+            "createdByName": "Hiram",
+            "updatedById": "0000000",
+            "updatedByName": "Hiram"
+        }
+    ]
+}

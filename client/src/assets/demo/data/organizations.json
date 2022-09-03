@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "organizationId": 0, 
+            "name": "Sharp Instrument",
+            "description": "Sharp Instrument",
+            "industry": "",
+            "address": "",
+            "phone": "",
+            "email": "",
+            "logo": "",
+            "accessType": "",
+            "config": [],
+            "createdAt": "2021-7-12",
+            "updatedAt": "2021-7-12",
+            "createdById": "0000000",
+            "createdByName": "Hiram",
+            "updatedById": "0000000",
+            "updatedByName": "Hiram"
+        }
+    ]
+}

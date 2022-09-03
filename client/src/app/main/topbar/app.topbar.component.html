@@ -1,0 +1,47 @@
+<p-toast position="top-center"></p-toast>
+<div class="layout-topbar shadow-4">
+    <div class="layout-topbar-left">
+        <a class="layout-topbar-logo" routerLink="/">
+            <img id="app-logo" src="assets/layout/images/logo-light.svg" alt="ultima-layout" style="height: 2.25rem">
+        </a>
+        <a class="layout-menu-button shadow-6" (click)="appMain.onMenuButtonClick($event)" pRipple>
+            <i class="pi pi-chevron-right"></i>
+        </a>
+        <a class="layout-topbar-mobile-button" (click)="appMain.onTopbarMobileButtonClick($event)" pRipple>
+            <i class="pi pi-ellipsis-v fs-large"></i>
+        </a>
+    </div>
+    <div class="layout-topbar-right" [ngClass]="{'layout-topbar-mobile-active': appMain.mobileTopbarActive}">
+        <div class="layout-topbar-actions-left">
+        </div>
+        <div class="layout-topbar-actions-right">
+            <ul class="layout-topbar-items">
+                <li class="layout-topbar-item">
+
+                    <p-dropdown class="mr-5" [options]="language" [(ngModel)]="selectedLanguage" optionLabel="name" (onChange)="onChange($event)"></p-dropdown>
+
+                    <p-chip [label]="'Name: ' + name" icon="pi pi-user" 
+                    (click)="appMain.onTopbarItemClick($event, 'profile')"
+                    styleClass="mr-2 custom-chip"></p-chip>
+
+                    
+
+                    <ul class="layout-topbar-action-panel shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="appMain.activeTopbarItem === 'profile'">
+
+                        <li class="layout-topbar-action-item" (click)="onLogout()">
+                            <a class="flex flex-row align-items-center" pRipple>
+                                <i class="pi pi-power-off" [ngClass]="'ml-2 mr-2'"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="layout-topbar-item">
+                    <!-- <a class="layout-topbar-action rounded-circle" (click)="appMain.onRightMenuButtonClick($event)" pRipple>
+                        <i class="pi fs-large" [ngClass]="{'pi-arrow-left': !app.isRTL, 'pi-arrow-right': app.isRTL}"></i>
+                    </a> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

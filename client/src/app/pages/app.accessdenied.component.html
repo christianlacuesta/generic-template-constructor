@@ -1,0 +1,26 @@
+<div class="pages-body accessdenied-page flex flex-column">
+    <div class="topbar p-3 flex justify-content-between flex-row align-items-center">
+        <div class="topbar-left ml-3 flex" routerLink="/">
+            <div class="logo">
+                <img src="assets/layout/images/logo2x.png" alt=""/>
+            </div>
+        </div>
+        <div class="topbar-right mr-3 flex">
+            <button pButton pRipple type="button" label="DASHBOARD" [routerLink]="['/']"
+                    class="p-button-text p-button-plain topbar-button"></button>
+        </div>
+    </div>
+
+    <div class="align-self-center mt-auto mb-auto">
+        <div class="pages-panel card flex flex-column">
+            <div class="pages-header px-3 py-1">
+                <h2>ACCESS DENIED</h2>
+            </div>
+            <div class="card mt-3 px-6">
+                <img src="assets/layout/images/pages/error.png" alt=""/>
+            </div>
+            <div class="pages-detail pb-6">Requested resource is not available.</div>
+            <button pButton pRipple type="button" label="GO BACK TO DASHBOARD" [routerLink]="['/']" class="p-button-text"></button>
+        </div>
+    </div>
+</div>

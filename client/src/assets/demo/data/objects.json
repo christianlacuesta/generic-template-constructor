@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "objectId": 0,
+            "objectParentId": 0,
+            "level": 0,
+            "itemId": 0,
+            "stepId": 0,
+            "interfaceId": 0,
+            "systemId": 0,
+            "organizationId": 0, 
+            "name": "Item 0",
+            "description": "",
+            "comment": "",
+            "commentType": "textBox",
+            "defaultSelected": false,
+            "config": [],
+            "createdAt": "2021-7-12",
+            "updatedAt": "2021-7-12",
+            "createdById": "0000000",
+            "createdByName": "Hiram",
+            "updatedById": "0000000",
+            "updatedByName": "Hiram"
+        }
+    ]
+}

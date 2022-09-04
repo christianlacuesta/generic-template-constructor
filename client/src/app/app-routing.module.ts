@@ -34,6 +34,7 @@ import {BlocksComponent} from './sample/blocks/blocks/blocks.component';
 import {AppWizardComponent} from './sample/pages/app.wizard.component';
 import {AppContactusComponent} from './sample/pages/app.contactus.component';
 import {AppLandingComponent} from './sample/pages/app.landing.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     imports: [
@@ -70,6 +71,7 @@ import {AppLandingComponent} from './sample/pages/app.landing.component';
                     {path: 'blocks', component: BlocksComponent},
                 ]
             },
+            {path: 'auth', component: AuthComponent},
             {path: 'pages/landing', component: AppLandingComponent},
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},

@@ -45,7 +45,7 @@ export class BlockViewer {
 
   @Input() containerClass: string;
 
-  @Input() previewStyle: string;
+  @Input() previewStyle: any;
 
   @Input() free: boolean = true;
 

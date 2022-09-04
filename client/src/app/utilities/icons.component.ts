@@ -41,7 +41,7 @@ export class IconsComponent implements OnInit {
 		});
 	}
 
-    onFilter(event: KeyboardEvent): void {
+    onFilter(event: any): void {
         const searchText = (event.target as HTMLInputElement).value;
 
         if (!searchText) {

@@ -11,19 +11,21 @@ import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.servi
 })
 export class ListDemoComponent implements OnInit {
 
-    products: Product[];
+    products: Product[] = [];
 
-    sortOptions: SelectItem[];
+    sortOptions: SelectItem[] = [];
 
-    sortOrder: number;
+    sortOrder: number = 0;
 
-    sortField: string;
+    sortField: string = '';
 
-    sourceCities: any[];
+    sourceCities: any[] = [];
 
-    targetCities: any[];
+    targetCities: any[] = [];
 
-    orderCities: any[];
+    orderCities: any[] = [];
+
+    sortKey: any = null;
 
     constructor(private productService: ProductService, private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([

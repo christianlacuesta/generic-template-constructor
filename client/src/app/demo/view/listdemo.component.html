@@ -67,7 +67,7 @@
 	<div class="col-12 lg:col-8">
 		<div class="card">
 			<h5>PickList</h5>
-			<p-pickList [source]="sourceCities" [target]="targetCities" sourceHeader="From" targetHeader="To" dragdrop="true"
+			<p-pickList [source]="sourceCities" [target]="targetCities" sourceHeader="From" targetHeader="To" [dragdrop]="true"
 						[responsive]="true" [sourceStyle]="{'height':'250px'}" [targetStyle]="{'height':'250px'}">
 				<ng-template let-city pTemplate="item">
 					<div>{{city.name}}</div>
@@ -79,7 +79,7 @@
 	<div class="col-12 lg:col-4">
 		<div class="card">
 			<h5>OrderList</h5>
-			<p-orderList [value]="orderCities" header="Cities" dragdrop="true" [listStyle]="{'height':'250px'}">
+			<p-orderList [value]="orderCities" header="Cities" [dragdrop]="true" [listStyle]="{'height':'250px'}">
 				<ng-template let-city pTemplate="item">
 					<div>{{city.name}}</div>
 				</ng-template>

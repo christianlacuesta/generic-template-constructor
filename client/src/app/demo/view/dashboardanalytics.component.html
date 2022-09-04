@@ -6,7 +6,7 @@
                 <button pRipple pButton type="button" label="Vertical/Stacked Data" class="p-button-text" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}" (click)="changeMonthlyDataView()"></button>
             </div>
 
-            <p-chart #bar type="bar" [data]="chartMonthlyData" [options]="chartMonthlyOptions" responsive="true" height="400px"></p-chart>
+            <p-chart #bar type="bar" [data]="chartMonthlyData" [options]="chartMonthlyOptions" [responsive]="true" height="400px"></p-chart>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                 <span>November 22 - November 29</span>
                 <button pRipple pButton type="button" label="Semi/Full Data" class="p-button-text" [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}" (click)="changeDoughnutDataView()"></button>
             </div>
-            <p-chart #doughnut type="doughnut" [data]="doughnutData" [options]="doughnutOptions" responsive="true" height="200px"></p-chart>
+            <p-chart #doughnut type="doughnut" [data]="doughnutData" [options]="doughnutOptions" [responsive]="true" height="200px"></p-chart>
             <div class="flex flex-column justify-content-center">
                 <div class="flex flex-row align-items-center mt-4 px-3">
                     <i class="pi pi-thumbs-up p-3 rounded-circle lightgreen-bgcolor solid-surface-text-color"></i>
@@ -140,7 +140,7 @@
                     </span>
                 </div>
                 <div class="px-4">
-                    <p-chart #storeA type="line" [data]="storeAData" [options]="storeAOptions" responsive="true"></p-chart>
+                    <p-chart #storeA type="line" [data]="storeAData" [options]="storeAOptions" [responsive]="true"></p-chart>
                 </div>
             </div>
             <div class="lg:col-3 md:col-6 sm:col-12 p-0">
@@ -155,7 +155,7 @@
                     </span>
                 </div>
                 <div class="px-4">
-                    <p-chart #storeB type="line" [data]="storeBData" [options]="storeBOptions" responsive="true"></p-chart>
+                    <p-chart #storeB type="line" [data]="storeBData" [options]="storeBOptions" [responsive]="true"></p-chart>
                 </div>
             </div>
             <div class="lg:col-3 md:col-6 sm:col-12 p-0">
@@ -170,7 +170,7 @@
                     </span>
                 </div>
                 <div class="px-4">
-                    <p-chart #storeC type="line" [data]="storeCData" [options]="storeCOptions" responsive="true"></p-chart>
+                    <p-chart #storeC type="line" [data]="storeCData" [options]="storeCOptions" [responsive]="true"></p-chart>
                 </div>
             </div>
             <div class="lg:col-3 md:col-6 sm:col-12 p-0">
@@ -185,7 +185,7 @@
                     </span>
                 </div>
                 <div class="px-4">
-                    <p-chart #storeD type="line" [data]="storeDData" [options]="storeDOptions" responsive="true"></p-chart>
+                    <p-chart #storeD type="line" [data]="storeDData" [options]="storeDOptions" [responsive]="true"></p-chart>
                 </div>
             </div>
         </div>

@@ -11,21 +11,21 @@ import {AppBreadcrumbService} from '../layout/breadcrumb/app.breadcrumb.service'
 })
 export class AppCrudComponent implements OnInit {
 
-    productDialog: boolean;
+    productDialog: boolean = false;;
 
     deleteProductDialog: boolean = false;
 
     deleteProductsDialog: boolean = false;
 
-    products: Product[];
+    products: Product[] = [];
 
     product: Product;
 
     selectedProducts: Product[];
 
-    submitted: boolean;
+    submitted: boolean = false;;
 
-    cols: any[];
+    cols: any[] = [];
 
     statuses: any[];
 

@@ -12,15 +12,15 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class DashboardComponent implements OnInit {
 
-    cities: SelectItem[];
+    cities: SelectItem[] = [];
 
-    products: Product[];
+    products: Product[] = [];
 
-    ordersChart: any;
+    ordersChart: any = null;
 
-    ordersOptions: any;
+    ordersOptions: any = null;
 
-    selectedCity: any;
+    selectedCity: any = null;
 
     timelineEvents: any[];
 

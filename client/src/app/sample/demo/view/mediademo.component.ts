@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import { ProductService } from '../service/productservice';
 import { PhotoService } from '../service/photoservice';
 import { Product } from '../domain/product';
-import {AppBreadcrumbService} from "../../layout/breadcrumb/app.breadcrumb.service";
+import {AppBreadcrumbService} from "../../../layout/breadcrumb/app.breadcrumb.service";
 
 @Component({
     templateUrl: './mediademo.component.html',
-    styleUrls: ['../../../assets/demo/badges.scss']
+    styleUrls: ['../../../../assets/demo/badges.scss']
 })
 export class MediaDemoComponent implements OnInit{
 

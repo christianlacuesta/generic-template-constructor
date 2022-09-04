@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../demo/domain/product';
 import {ProductService} from '../demo/service/productservice';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {AppBreadcrumbService} from '../layout/breadcrumb/app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './app.crud.component.html',
     providers: [MessageService, ConfirmationService],
-    styleUrls: ['../../assets/demo/badges.scss']
+    styleUrls: ['../../../assets/demo/badges.scss']
 })
 export class AppCrudComponent implements OnInit {
 

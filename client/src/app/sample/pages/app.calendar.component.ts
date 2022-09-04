@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../demo/service/eventservice';
-import {AppBreadcrumbService} from "../layout/breadcrumb/app.breadcrumb.service";
+import {AppBreadcrumbService} from "../../layout/breadcrumb/app.breadcrumb.service";
 
 @Component({
     templateUrl: './app.calendar.component.html',

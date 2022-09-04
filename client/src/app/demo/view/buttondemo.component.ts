@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './buttondemo.component.html'
@@ -28,7 +28,7 @@ export class ButtonDemoComponent implements OnInit {
         ];
     }
 
-    load(index) {
+    load(index: any) {
         this.loading[index] = true;
         setTimeout(() => this.loading[index] = false, 1000);
     }

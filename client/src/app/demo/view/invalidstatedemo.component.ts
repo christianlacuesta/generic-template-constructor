@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from '../service/countryservice';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './invalidstatedemo.component.html'
@@ -55,7 +55,7 @@ export class InvalidStateDemoComponent implements OnInit {
         });
     }
 
-    searchCountry(event) {
+    searchCountry(event: any) {
         // in a real application, make a request to a remote url with the query and return filtered results,
         // for demo we filter at client side
         const filtered: any[] = [];

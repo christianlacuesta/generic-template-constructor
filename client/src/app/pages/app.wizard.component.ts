@@ -97,11 +97,11 @@ export class AppWizardComponent {
         ];
     }
 
-    clickNext(step) {
+    clickNext(step: any) {
         this.activeTab = step;
     }
 
-    selectTier(card) {
+    selectTier(card: any) {
         this.activeCard = card;
         this.activeTab = 'payment';
     }

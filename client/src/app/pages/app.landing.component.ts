@@ -23,13 +23,13 @@ export class AppLandingComponent {
 
     @ViewChild('menu') menuViewChild: ElementRef;
 
-    smoothScroll(id){
+    smoothScroll(id: any){
         document.querySelector(id).scrollIntoView({
             behavior: 'smooth'
         });
     }
 
-    onMenuButtonClick(e) {
+    onMenuButtonClick(e: any) {
         let menu = this.menuViewChild.nativeElement;
 
         if (this.isMenuActive) {
@@ -54,7 +54,7 @@ export class AppLandingComponent {
         }
     }
 
-    addClass(element, classNames) {
+    addClass(element: any, classNames: any) {
         let classNamesArr = classNames.split(' ');
         for (var i = 0; i < classNamesArr.length; i++) {
             let className = classNamesArr[i];
@@ -65,7 +65,7 @@ export class AppLandingComponent {
         }
     }
 
-    removeClass(element, classNames) {
+    removeClass(element: any, classNames: any) {
         let classNamesArr = classNames.split(' ');
         for (var i = 0; i < classNamesArr.length; i++) {
             let className = classNamesArr[i];

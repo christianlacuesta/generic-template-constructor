@@ -1,6 +1,6 @@
 export interface Image {
-    previewImageSrc?;
-    thumbnailImageSrc?;
-    alt?;
-    title?;
+    previewImageSrc?: any;
+    thumbnailImageSrc?: any;
+    alt?: any;
+    title?: any;
 }

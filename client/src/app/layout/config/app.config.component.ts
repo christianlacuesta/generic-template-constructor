@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
+import {AppComponent} from '../../app.component';
+import {AppMainComponent} from '../main/app.main.component';
 import {Subscription} from 'rxjs';
 @Component({
     selector: 'app-config',
@@ -141,13 +141,13 @@ export class AppConfigComponent implements OnInit {
 
     scales: number[] = [12, 13, 14, 15, 16];
 
-    themes: any[];
+    themes: any[] = [];
 
-    menuThemes: any[];
+    menuThemes: any[] = [];
 
     menuTheme = 'light';
 
-    topbarThemes: any[];
+    topbarThemes: any[] = [];
 
     topbarTheme = 'blue';
 
@@ -248,7 +248,7 @@ export class AppConfigComponent implements OnInit {
         this.isInputBackgroundChanged = true;
     }
 
-    onLayoutModeChange(event, mode) {
+    onLayoutModeChange(mode: any, anyString: string) {
         const appLogoLink: HTMLImageElement = document.getElementById('app-logo') as HTMLImageElement;
         this.app.layoutMode = mode;
 
@@ -271,7 +271,7 @@ export class AppConfigComponent implements OnInit {
         const layoutHref = 'assets/layout/css/layout-' + this.app.layoutMode + '.css';
         this.replaceLink(layoutLink, layoutHref);
 
-        const themeLink = document.getElementById('theme-css');
+        const themeLink: any = document.getElementById('theme-css');
         const urlTokens = themeLink.getAttribute('href').split('/');
         urlTokens[urlTokens.length - 1] = 'theme-' + this.app.layoutMode + '.css';
         const newURL = urlTokens.join('/');
@@ -279,7 +279,7 @@ export class AppConfigComponent implements OnInit {
         this.replaceLink(themeLink, newURL, this.appMain['refreshChart']);
     }
 
-    changeTheme(theme) {
+    changeTheme(theme: any) {
         this.theme = theme;
 
         const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
@@ -287,12 +287,12 @@ export class AppConfigComponent implements OnInit {
         this.replaceLink(themeLink, themeHref);
     }
 
-    changeMenuTheme(theme) {
+    changeMenuTheme(theme: any) {
         this.selectedMenuTheme = theme;
         this.app.menuTheme = theme.name;
     }
 
-    changeTopbarTheme(theme) {
+    changeTopbarTheme(theme: any) {
         this.selectedTopbarTheme = theme;
         this.app.topbarTheme = theme.name;
 
@@ -311,7 +311,7 @@ export class AppConfigComponent implements OnInit {
         return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent);
     }
 
-    replaceLink(linkElement, href, callback?) {
+    replaceLink(linkElement: any, href: any, callback?: any) {
         if (this.isIE()) {
             linkElement.setAttribute('href', href);
             if (callback) {

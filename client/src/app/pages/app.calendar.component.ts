@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from '../demo/service/eventservice';
-import {AppBreadcrumbService} from "../app.breadcrumb.service";
+import {AppBreadcrumbService} from "../layout/breadcrumb/app.breadcrumb.service";
 
 @Component({
     templateUrl: './app.calendar.component.html',
@@ -35,7 +35,7 @@ export class AppCalendarComponent implements OnInit {
 
     changedEvent: any;
 
-    clickedEvent = null;
+    clickedEvent: any = null;
 
     constructor(private eventService: EventService, private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
@@ -61,7 +61,7 @@ export class AppCalendarComponent implements OnInit {
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true,
-            eventClick: (e) => {
+            eventClick: (e: any) => {
                 this.eventDialog = true;
 
                 this.clickedEvent = e.event;

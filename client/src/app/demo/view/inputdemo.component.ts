@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CountryService} from '../service/countryservice';
 import {SelectItem} from 'primeng/api';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './inputdemo.component.html',
@@ -116,7 +116,7 @@ export class InputDemoComponent implements OnInit{
         ];
     }
 
-    filterCountry(event) {
+    filterCountry(event: any) {
         const filtered: any[] = [];
         const query = event.query;
         for (let i = 0; i < this.countries.length; i++) {

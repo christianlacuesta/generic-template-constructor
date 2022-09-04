@@ -1,7 +1,7 @@
 import {Component, AfterViewInit, Renderer2, OnInit, OnDestroy} from '@angular/core';
-import { MenuService } from './app.menu.service';
+import { MenuService } from '../menu/app.menu.service';
 import { PrimeNGConfig } from 'primeng/api';
-import { AppComponent } from './app.component';
+import { AppComponent } from '../../app.component';
 
 @Component({
     selector: 'app-main',
@@ -9,31 +9,31 @@ import { AppComponent } from './app.component';
 })
 export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
 
-    topbarMenuActive: boolean;
+    topbarMenuActive: boolean = false;
 
-    menuActive: boolean;
+    menuActive: boolean = false;
 
-    staticMenuDesktopInactive: boolean;
+    staticMenuDesktopInactive: boolean = false;
 
-    mobileMenuActive: boolean;
+    mobileMenuActive: boolean = false;
 
-    menuClick: boolean;
+    menuClick: boolean = false;
 
-    mobileTopbarActive: boolean;
+    mobileTopbarActive: boolean = false;
 
-    topbarRightClick: boolean;
+    topbarRightClick: boolean = false;
 
-    topbarItemClick: boolean;
+    topbarItemClick: boolean = false;
 
-    activeTopbarItem: string;
+    activeTopbarItem: string = '';
 
-    documentClickListener: () => void;
+    documentClickListener!: () => void;
 
-    configActive: boolean;
+    configActive: boolean = false;
 
-    configClick: boolean;
+    configClick: boolean = false;
 
-    rightMenuActive: boolean;
+    rightMenuActive: boolean = false;
 
     menuHoverActive = false;
 
@@ -41,11 +41,11 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
 
     search = false;
 
-    currentInlineMenuKey: string;
+    currentInlineMenuKey: number = 0;
 
     inlineMenuActive: any[] = [];
 
-    inlineMenuClick: boolean;
+    inlineMenuClick: boolean = false;
 
     constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
                 public app: AppComponent) { }
@@ -58,7 +58,7 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         // hides the horizontal submenus or top menu if outside is clicked
         this.documentClickListener = this.renderer.listen('body', 'click', () => {
             if (!this.topbarItemClick) {
-                this.activeTopbarItem = null;
+                this.activeTopbarItem = '';
                 this.topbarMenuActive = false;
             }
 
@@ -100,7 +100,7 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         });
     }
 
-    onMenuButtonClick(event) {
+    onMenuButtonClick(event: any) {
         this.menuActive = !this.menuActive;
         this.topbarMenuActive = false;
         this.topbarRightClick = true;
@@ -120,17 +120,17 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         event.preventDefault();
     }
 
-    onTopbarMobileButtonClick(event) {
+    onTopbarMobileButtonClick(event: any) {
         this.mobileTopbarActive = !this.mobileTopbarActive;
         event.preventDefault();
     }
 
-    onRightMenuButtonClick(event) {
+    onRightMenuButtonClick(event: any) {
         this.rightMenuActive = !this.rightMenuActive;
         event.preventDefault();
     }
 
-    onMenuClick($event) {
+    onMenuClick($event: any) {
         this.menuClick = true;
 
         if (this.inlineMenuActive[this.currentInlineMenuKey] && !this.inlineMenuClick) {
@@ -138,13 +138,13 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         }
     }
 
-    onSearchKeydown(event) {
+    onSearchKeydown(event: any) {
         if (event.keyCode === 27) {
             this.search = false;
         }
     }
 
-    onInlineMenuClick(event, key) {
+    onInlineMenuClick(event: any, key: any) {
         if (key !== this.currentInlineMenuKey) {
             this.inlineMenuActive[this.currentInlineMenuKey] = false;
         }
@@ -154,11 +154,11 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         this.inlineMenuClick = true;
     }
 
-    onTopbarItemClick(event, item) {
+    onTopbarItemClick(event: any, item: any) {
         this.topbarItemClick = true;
 
         if (this.activeTopbarItem === item) {
-            this.activeTopbarItem = null;
+            this.activeTopbarItem = '';
         }
         else {
             this.activeTopbarItem = item;
@@ -172,20 +172,20 @@ export class AppMainComponent implements AfterViewInit, OnInit, OnDestroy {
         event.preventDefault();
     }
 
-    onTopbarSubItemClick(event) {
+    onTopbarSubItemClick(event: any) {
         event.preventDefault();
     }
 
-    onRTLChange(event) {
+    onRTLChange(event: any) {
         this.app.isRTL = event.checked;
     }
 
-    onRippleChange(event) {
+    onRippleChange(event: any) {
         this.app.ripple = event.checked;
         this.primengConfig.ripple = event.checked;
     }
 
-    onConfigClick(event) {
+    onConfigClick(event: any) {
         this.configClick = true;
     }
 

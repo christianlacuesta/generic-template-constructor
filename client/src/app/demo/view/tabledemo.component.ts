@@ -5,7 +5,7 @@ import { Product } from '../domain/product';
 import { ProductService } from '../service/productservice';
 import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService } from 'primeng/api'
-import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { AppBreadcrumbService } from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './tabledemo.component.html',
@@ -140,7 +140,7 @@ export class TableDemoComponent implements OnInit {
         this.isExpanded = !this.isExpanded;
     }
 
-    formatCurrency(value) {
+    formatCurrency(value: any) {
         return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     }
 

@@ -4,7 +4,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {MenuService} from './app.menu.service';
-import {AppMainComponent} from './app.main.component';
+import {AppMainComponent} from '../main/app.main.component';
 
 @Component({
     /* tslint:disable:component-selector */
@@ -74,11 +74,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     @Input() item: any;
 
-    @Input() index: number;
+    @Input() index: number = 0;
 
-    @Input() root: boolean;
+    @Input() root: boolean = false;
 
-    @Input() parentKey: string;
+    @Input() parentKey: string = '';
 
     active = false;
 
@@ -86,7 +86,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     menuResetSubscription: Subscription;
 
-    key: string;
+    key: string = '';
 
     constructor(public app: AppMainComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {

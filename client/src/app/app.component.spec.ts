@@ -3,8 +3,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AppTopBarComponent } from './app.topbar.component';
-import { AppFooterComponent } from './app.footer.component';
+import { AppTopBarComponent } from './layout/topbar/app.topbar.component';
+import { AppFooterComponent } from './layout/footer/app.footer.component';
 import { AppMenuComponent } from './app.menu.component';
 import { ProgressBarModule} from 'primeng/progressbar';
 import { MenuService } from './app.menu.service';

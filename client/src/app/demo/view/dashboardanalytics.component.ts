@@ -3,10 +3,10 @@ import { EventService } from '../service/eventservice';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../domain/product';
 import { ProductService } from '../service/productservice';
-import { AppBreadcrumbService } from '../../app.breadcrumb.service';
+import { AppBreadcrumbService } from '../../layout/breadcrumb/app.breadcrumb.service';
 import { UIChart } from 'primeng/chart';
 import { AppComponent } from 'src/app/app.component';
-import { AppMainComponent } from 'src/app/app.main.component';
+import { AppMainComponent } from 'src/app/layout/main/app.main.component';
 
 @Component({
     templateUrl: './dashboardanalytics.component.html'
@@ -301,7 +301,7 @@ export class DashboardAnalyticsComponent implements OnInit, OnDestroy {
             },
         };
 
-        const calculateStore = (storeData, totalValue) => {
+        const calculateStore = (storeData: any, totalValue: any) => {
             let randomNumber = +((Math.random() * 500).toFixed(2));
             let data = [...storeData.datasets[0].data];
             let length = data.length;

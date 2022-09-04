@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './overlaysdemo.component.html',
@@ -18,15 +18,15 @@ export class OverlaysDemoComponent implements OnInit {
 
     selectedProduct: Product;
 
-    visibleSidebar1;
+    visibleSidebar1: boolean = false;
 
-    visibleSidebar2;
+    visibleSidebar2: boolean = false;
 
-    visibleSidebar3;
+    visibleSidebar3: boolean = false;
 
-    visibleSidebar4;
+    visibleSidebar4: boolean = false;
 
-    visibleSidebar5;
+    visibleSidebar5: boolean = false;
 
     constructor(private productService: ProductService, private confirmationService: ConfirmationService,
                 private messageService: MessageService, private breadcrumbService: AppBreadcrumbService) {
@@ -80,7 +80,7 @@ export class OverlaysDemoComponent implements OnInit {
         });
     }
 
-    formatCurrency(value) {
+    formatCurrency(value: any) {
         return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
     }
 }

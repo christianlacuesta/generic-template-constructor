@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './listdemo.component.html',
@@ -60,7 +60,7 @@ export class ListDemoComponent implements OnInit {
         ];
     }
 
-    onSortChange(event) {
+    onSortChange(event: any) {
         const value = event.value;
 
         if (value.indexOf('!') === 0) {

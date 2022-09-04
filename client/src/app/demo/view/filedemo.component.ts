@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MessageService} from 'primeng/api';
-import {AppBreadcrumbService} from '../../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './filedemo.component.html',
@@ -17,7 +17,7 @@ export class FileDemoComponent {
         ]);
     }
 
-    onUpload(event) {
+    onUpload(event: any) {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
         }
@@ -25,7 +25,7 @@ export class FileDemoComponent {
         this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
     }
 
-    onBasicUpload(event) {
+    onBasicUpload(event: any) {
         this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
     }
 }

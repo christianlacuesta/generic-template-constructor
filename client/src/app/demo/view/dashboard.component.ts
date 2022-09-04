@@ -3,8 +3,8 @@ import { EventService } from '../service/eventservice';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../domain/product';
 import { ProductService } from '../service/productservice';
-import { AppBreadcrumbService } from '../../app.breadcrumb.service';
-import { AppMainComponent } from 'src/app/app.main.component';
+import { AppBreadcrumbService } from '../../layout/breadcrumb/app.breadcrumb.service';
+import { AppMainComponent } from 'src/app/layout/main/app.main.component';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -293,14 +293,14 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
-    onEmojiClick(chatInput, emoji) {
+    onEmojiClick(chatInput: any, emoji: any) {
         if (chatInput) {
             chatInput.value += emoji;
             chatInput.focus();
         }
     }
 
-    onChatKeydown(event) {
+    onChatKeydown(event: any) {
         if (event.key === 'Enter') {
             const message = event.currentTarget.value;
             const lastMessage = this.chatMessages[this.chatMessages.length - 1];

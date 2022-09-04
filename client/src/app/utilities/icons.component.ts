@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import { IconService } from '../demo/service/iconservice';
-import {AppBreadcrumbService} from '../app.breadcrumb.service';
+import {AppBreadcrumbService} from '../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './icons.component.html',
 })
 export class IconsComponent implements OnInit {
 
-    icons: any [];
+    icons: any [] = [];
 
-    filteredIcons: any [];
+    filteredIcons: any [] = [];
 
     selectedIcon: any;
 

@@ -13,6 +13,7 @@ import { BlocksModule } from './sample/blocks/blocks.module';
 import { ViewModule } from './sample/demo/view/view.module';
 import { PagesModule } from './sample/pages/pages.module';
 import { IconsModule } from './sample/utilities/icons.module';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { IconsModule } from './sample/utilities/icons.module';
     ],
     declarations: [
         AppComponent,
+        AuthComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

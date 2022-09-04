@@ -40,5 +40,4 @@ import { AppTopBarComponent } from "./topbar/app.topbar.component";
     ],
     providers: [MenuService, AppBreadcrumbService],
 })
-export class LayoutModule {
-}
+export class LayoutModule {}

@@ -6,7 +6,6 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 
-import {AppCodeModule} from './blocks/app-code/app.code.component';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './demo/view/dashboard.component';
 import {DashboardAnalyticsComponent} from './demo/view/dashboardanalytics.component';
@@ -28,7 +27,7 @@ import {EmptyDemoComponent} from './demo/view/emptydemo.component';
 import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
-import {IconsComponent} from './utilities/icons.component';
+import {IconsComponent} from './sample/utilities/icons.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppInvoiceComponent} from './pages/app.invoice.component';
@@ -40,8 +39,6 @@ import {AppLoginComponent} from './pages/app.login.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {AppWizardComponent} from './pages/app.wizard.component';
 import {AppLandingComponent} from './pages/app.landing.component';
-import {BlocksComponent} from './blocks/blocks/blocks.component';
-import {BlockViewer} from './blocks/blockviewer/blockviewer.component';
 
 import {CountryService} from './demo/service/countryservice';
 import {CustomerService} from './demo/service/customerservice';
@@ -55,6 +52,7 @@ import {AppContactusComponent} from './pages/app.contactus.component';
 
 import { LayoutModule } from './layout/layout.module';
 import { PrimeNgModule } from './app-primeng.module';
+import { BlocksModule } from './sample/blocks/blocks.module';
 
 @NgModule({
     imports: [
@@ -63,9 +61,9 @@ import { PrimeNgModule } from './app-primeng.module';
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        AppCodeModule,
         PrimeNgModule,
-        LayoutModule
+        LayoutModule,
+        BlocksModule
     ],
     declarations: [
         AppComponent,
@@ -103,8 +101,6 @@ import { PrimeNgModule } from './app-primeng.module';
         AppTimelineDemoComponent,
         AppWizardComponent,
         AppContactusComponent,
-        BlocksComponent,
-        BlockViewer
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -8,5 +8,6 @@ export interface AuthSettingsModel {
 }
 
 export interface AuthLoginInfoModel {
-
+    username: string;
+    password: string;
 }

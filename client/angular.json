@@ -39,7 +39,7 @@
                             "node_modules/prismjs/components/prism-typescript.js"
                         ],                
                         "allowedCommonJsDependencies": [
-                            "@fullcalendar/angular",
+                            "fast-deep-equal",
                             "@fullcalendar/daygrid",
                             "@fullcalendar/timegrid",
                             "@fullcalendar/interaction",

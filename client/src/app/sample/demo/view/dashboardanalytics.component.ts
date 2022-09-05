@@ -3,10 +3,10 @@ import { EventService } from '../service/eventservice';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../domain/product';
 import { ProductService } from '../service/productservice';
-import { AppBreadcrumbService } from '../../../layout/breadcrumb/app.breadcrumb.service';
+import { AppBreadcrumbService } from '../../layout/breadcrumb/app.breadcrumb.service';
 import { UIChart } from 'primeng/chart';
 import { AppComponent } from 'src/app/app.component';
-import { AppMainComponent } from 'src/app/layout/main/app.main.component';
+import { AppMainComponent } from 'src/app/sample/layout/main/app.main.component';
 
 @Component({
     templateUrl: './dashboardanalytics.component.html'

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { AppMainComponent } from 'src/app/layout/main/app.main.component';
-import {AppBreadcrumbService} from '../../../layout/breadcrumb/app.breadcrumb.service';
+import { AppMainComponent } from 'src/app/sample/layout/main/app.main.component';
+import {AppBreadcrumbService} from '../../layout/breadcrumb/app.breadcrumb.service';
 
 @Component({
     templateUrl: './chartsdemo.component.html'

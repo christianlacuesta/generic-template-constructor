@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {AppComponent} from '../../app.component';
+import {AppComponent} from '../../../app.component';
 import {AppMainComponent} from '../main/app.main.component';
 import {Subscription} from 'rxjs';
 @Component({

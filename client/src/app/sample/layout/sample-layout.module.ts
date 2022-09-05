@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PrimeNgModule } from "../app-primeng.module";
-import { AppRoutingModule } from "../app-routing.module";
+import { PrimeNgModule } from "../../app-primeng.module";
+import { AppRoutingModule } from "../../app-routing.module";
 import { AppRightMenuComponent } from "./right-menu/app.rightmenu.component";
 import { AppBreadcrumbComponent } from "./breadcrumb/app.breadcrumb.component";
 import { AppBreadcrumbService } from "./breadcrumb/app.breadcrumb.service";
@@ -40,4 +40,4 @@ import { AppTopBarComponent } from "./topbar/app.topbar.component";
     ],
     providers: [MenuService, AppBreadcrumbService],
 })
-export class LayoutModule {}
+export class SampleLayoutModule {}

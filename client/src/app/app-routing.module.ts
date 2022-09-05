@@ -14,7 +14,7 @@ import {EmptyDemoComponent} from './sample/demo/view/emptydemo.component';
 import {ChartsDemoComponent} from './sample/demo/view/chartsdemo.component';
 import {FileDemoComponent} from './sample/demo/view/filedemo.component';
 import {DocumentationComponent} from './sample/demo/view/documentation.component';
-import {AppMainComponent} from './layout/main/app.main.component';
+import {AppMainComponent} from './sample/layout/main/app.main.component';
 import {AppNotfoundComponent} from './sample/pages/app.notfound.component';
 import {AppErrorComponent} from './sample/pages/app.error.component';
 import {AppAccessdeniedComponent} from './sample/pages/app.accessdenied.component';

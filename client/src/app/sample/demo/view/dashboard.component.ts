@@ -3,8 +3,8 @@ import { EventService } from '../service/eventservice';
 import { SelectItem } from 'primeng/api';
 import { Product } from '../domain/product';
 import { ProductService } from '../service/productservice';
-import { AppBreadcrumbService } from '../../../layout/breadcrumb/app.breadcrumb.service';
-import { AppMainComponent } from 'src/app/layout/main/app.main.component';
+import { AppBreadcrumbService } from '../../layout/breadcrumb/app.breadcrumb.service';
+import { AppMainComponent } from 'src/app/sample/layout/main/app.main.component';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({

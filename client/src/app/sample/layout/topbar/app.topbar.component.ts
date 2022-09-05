@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { trigger, style, transition, animate, AnimationEvent } from '@angular/animations';
 import { MegaMenuItem } from 'primeng/api';
-import { AppComponent } from '../../app.component';
+import { AppComponent } from '../../../app.component';
 import { AppMainComponent } from '../main/app.main.component';
 @Component({
     selector: 'app-topbar',

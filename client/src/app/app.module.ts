@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import { LayoutModule } from './layout/layout.module';
+import { SampleLayoutModule } from './sample/layout/sample-layout.module';
 import { PrimeNgModule } from './app-primeng.module';
 import { BlocksModule } from './sample/blocks/blocks.module';
 import { ViewModule } from './sample/demo/view/view.module';
@@ -23,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
         HttpClientModule,
         BrowserAnimationsModule,
         PrimeNgModule,
-        LayoutModule,
+        SampleLayoutModule,
         BlocksModule,
         ViewModule,
         PagesModule,

@@ -7,13 +7,13 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit{
 
-    topbarTheme = 'blue';
+    topbarTheme = 'bluegrey';
 
-    menuTheme = 'light';
+    menuTheme = 'bluegrey';
 
     layoutMode = 'light';
 
-    menuMode = 'static';
+    menuMode = 'overlay';
 
     inlineMenuPosition = 'bottom';
 

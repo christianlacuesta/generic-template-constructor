@@ -137,7 +137,7 @@ import {Subscription} from 'rxjs';
 })
 export class AppConfigComponent implements OnInit {
 
-    scale = 14;
+    scale = 12;
 
     scales: number[] = [12, 13, 14, 15, 16];
 
@@ -151,13 +151,13 @@ export class AppConfigComponent implements OnInit {
 
     topbarTheme = 'blue';
 
-    theme = 'indigo';
+    theme = 'bluegrey';
 
     matchingMenuTheme = false;
 
     matchingTopbarTheme = false;
 
-    selectedMenuTheme: any;
+    selectedMenuTheme: any = {name: 'bluegrey', color: '#37474F'};
 
     selectedTopbarTheme: any;
 
@@ -168,6 +168,9 @@ export class AppConfigComponent implements OnInit {
     constructor(public appMain: AppMainComponent, public app: AppComponent) {}
 
     ngOnInit() {
+        this.applyScale();
+        this.changeTheme('bluegrey')
+
         this.themes = [
             {name: 'indigo', color: '#3F51B5'},
             {name: 'pink', color: '#E91E63'},
@@ -248,7 +251,7 @@ export class AppConfigComponent implements OnInit {
         this.isInputBackgroundChanged = true;
     }
 
-    onLayoutModeChange(mode: any, anyString: string) {
+    onLayoutModeChange(event: any, mode: string) {
         const appLogoLink: HTMLImageElement = document.getElementById('app-logo') as HTMLImageElement;
         this.app.layoutMode = mode;
 

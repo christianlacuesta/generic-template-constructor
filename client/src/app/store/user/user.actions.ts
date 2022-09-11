@@ -66,7 +66,6 @@ export class GetUsersTableError implements Action {
  * GET user by id *
  *****************/
 
-
  export class GetUser implements Action {
     readonly type = GET_USER;
     constructor(public payload: number) { }

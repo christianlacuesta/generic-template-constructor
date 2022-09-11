@@ -5,10 +5,6 @@ export const GET_USERS = '[ALL] Users';
 export const GET_USERS_SUCCESS = '[ALL] Users Success';
 export const GET_USERS_ERROR = '[ALL] Users Error';
 
-export const GET_USERSTABLE = '[ALL] Users Table';
-export const GET_USERSTABLE_SUCCESS = '[ALL] Users Table Success';
-export const GET_USERSTABLE_ERROR = '[ALL] Users Table Error';
-
 export const GET_USER = '[GET] User';
 export const GET_USER_SUCCESS = '[GET] User Success';
 export const GET_USER_ERROR = '[GET] User Error';
@@ -40,25 +36,6 @@ export class GetUsersSuccess implements Action {
 
 export class GetUsersError implements Action {
     readonly type = GET_USERS_ERROR;
-    constructor(public payload: Error) { }
-}
-
-/***************************
- * GET all the users table *
- **************************/
-
- export class GetUsersTable implements Action {
-    readonly type = GET_USERSTABLE;
-    constructor(public payload: any) { }
-}
-
-export class GetUsersTableSuccess implements Action {
-    readonly type = GET_USERSTABLE_SUCCESS;
-    constructor(public payload: UserModel[]) { }
-}
-
-export class GetUsersTableError implements Action {
-    readonly type = GET_USERSTABLE_ERROR;
     constructor(public payload: Error) { }
 }
 

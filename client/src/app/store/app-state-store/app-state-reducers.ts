@@ -12,5 +12,8 @@ const initialState: AppStateModel = {
     isFormSubmitted: false,
     formItems: [],
     formRequired: [],
-    table: initialTableState 
+    table: initialTableState, 
+    action: null,
+    done: false,
+    error: null
 }

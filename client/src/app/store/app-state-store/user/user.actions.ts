@@ -25,9 +25,9 @@ export const DELETE_USER = '[DELETE] User';
 export const DELETE_USER_SUCCESS = '[DELETE] User Success';
 export const DELETE_USER_ERROR = '[DELETE] User Error';
 
-/****************************************
- * GET all the users
- ****************************************/
+/*********************
+ * GET all the users *
+ ********************/
 
 export class GetUsers implements Action {
     readonly type = GET_USERS;
@@ -43,9 +43,9 @@ export class GetUsersError implements Action {
     constructor(public payload: Error) { }
 }
 
-/****************************************
- * GET all the users table
- ****************************************/
+/***************************
+ * GET all the users table *
+ **************************/
 
  export class GetUsersTable implements Action {
     readonly type = GET_USERSTABLE;
@@ -54,7 +54,7 @@ export class GetUsersError implements Action {
 
 export class GetUsersTableSuccess implements Action {
     readonly type = GET_USERSTABLE_SUCCESS;
-    constructor(public payload: User[]) { }
+    constructor(public payload: UserModel[]) { }
 }
 
 export class GetUsersTableError implements Action {
@@ -62,9 +62,9 @@ export class GetUsersTableError implements Action {
     constructor(public payload: Error) { }
 }
 
-/****************************************
- * GET user by id
- ****************************************/
+/******************
+ * GET user by id *
+ *****************/
 
 
  export class GetUser implements Action {
@@ -74,7 +74,7 @@ export class GetUsersTableError implements Action {
 
 export class GetUserSuccess implements Action {
     readonly type = GET_USER_SUCCESS;
-    constructor(public payload: User) { }
+    constructor(public payload: UserModel) { }
 }
 
 export class GetUserError implements Action {
@@ -82,13 +82,13 @@ export class GetUserError implements Action {
     constructor(public payload: Error) { }
 }
 
-/****************************************
- * POST new user
- ****************************************/
+/*****************
+ * POST new user *
+ ****************/
 
  export class PostUser implements Action {
     readonly type = POST_USER;
-    constructor(public payload: User) { }
+    constructor(public payload: UserModel) { }
 }
 
 export class PostUserSuccess implements Action {
@@ -101,13 +101,13 @@ export class PostUserError implements Action {
     constructor(public payload: Error) { }
 }
 
-/****************************************
- * PUT user by id
- ****************************************/
+/******************
+ * PUT user by id *
+ *****************/
 
  export class PutUser implements Action {
     readonly type = PUT_USER;
-    constructor(public payload: User) { }
+    constructor(public payload: UserModel) { }
 }
 
 export class PutUserSuccess implements Action {
@@ -119,9 +119,9 @@ export class PutUserError implements Action {
     constructor(public payload: Error) { }
 }
 
-/****************************************
- * DELETE a user by id
- ****************************************/
+/***********************
+ * DELETE a user by id *
+ **********************/
 
  export class DeleteUser implements Action {
     readonly type = DELETE_USER;
@@ -130,7 +130,7 @@ export class PutUserError implements Action {
 
 export class DeleteUserSuccess implements Action {
     readonly type = DELETE_USER_SUCCESS;
-    constructor(public payload: User) { }
+    constructor(public payload: UserModel) { }
 }
 
 export class DeleteUserError implements Action {

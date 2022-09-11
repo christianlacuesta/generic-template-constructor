@@ -15,4 +15,7 @@ export interface AppStateModel {
     formItems: FormItemModel[];
     formRequired: FormRequiredModel[],
     table: TableModel;
+    action: any;
+    done: boolean;
+    error: any;
 }

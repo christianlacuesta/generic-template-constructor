@@ -5,11 +5,11 @@ import { initialUserSessionState } from "src/app/models/usersession/usersession"
 
 const initialState: AppStateModel = {
     isAuthenticated: false,
-    isFormSubmitted: false,
     language: {name: 'English', code: 'en'},
     user: initialUserState,
     userSession: initialUserSessionState,
     roles: [],
+    isFormSubmitted: false,
     formItems: [],
     formRequired: [],
     table: initialTableState 

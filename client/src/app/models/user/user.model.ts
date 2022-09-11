@@ -1,4 +1,5 @@
-export interface User {
+
+export interface UserModel {
     userId: number;
     idNo: string;
     staffId: string;
@@ -18,11 +19,41 @@ export interface User {
     email: string;
     phone: string
     mobile: string;
-    groups: any;
+    groups: any[];
     createdById: string;
     createdByName: string;
     updatedById: string;
     updatedByName: string;
     createdAt: Date;
     updatedAt: Date;
+}
+
+
+export const initialUserState: UserModel = {
+    userId: 0,
+    idNo: '',
+    staffId: '',
+    username: '',
+    password: '',
+    title: {},
+    firstName: '',
+    middleName: '',
+    lastName:  '',
+    gender: {},
+    dateOfBirth: new Date(),
+    nationality: {},
+    organization: {},
+    department: {},
+    section: {},
+    position:{},
+    email: '',
+    phone: '',
+    mobile: '',
+    groups: [],
+    createdById: '',
+    createdByName: '',
+    updatedById: '',
+    updatedByName: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
 }

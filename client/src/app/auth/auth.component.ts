@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppLanguageModel } from '../models/app-models/app-language.model';
+import { AppLanguageModel } from '../models/app-models/app-common.model';
 
 @Component({
   selector: 'app-auth',

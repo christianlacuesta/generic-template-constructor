@@ -1,4 +1,4 @@
-export interface UserSession {
+export interface UserSessionModel {
     userSessionId: number;
     userId: number;
     idNo: string;
@@ -13,4 +13,21 @@ export interface UserSession {
     updatedByName: string;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export const initialUserSessionState: UserSessionModel = {
+    userSessionId: 0,
+    userId: 0,
+    idNo: '',
+    staffId: '',
+    username: '',
+    password:  '',
+    transaction: '',
+    appState: null,
+    createdById:  '',
+    createdByName:  '',
+    updatedById: '',
+    updatedByName: '',
+    createdAt: new Date(),
+    updatedAt: new Date()
 }

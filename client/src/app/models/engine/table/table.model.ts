@@ -13,3 +13,12 @@ export interface TablePaginator {
     rowsPerPageOptions: any[];
     totalRecords: number;
 }
+
+export const initialTableState: TableModel = {
+    tableName: '',
+    filters: [],
+    limit: 10,
+    offset: 0,
+    count: 0,
+    rows: []
+}

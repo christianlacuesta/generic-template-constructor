@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiPostResponse } from 'src/app/models/app-models/app-common.model';
 import { environment } from 'src/environments/environment';
 import { UserSessionModel } from '../../models/usersession/usersession';
 
@@ -21,12 +22,12 @@ export class UserSessionService {
       return this.http.post<UserSessionModel>(apiUrl + 'usersession/byid', {userSessionId: userSessionId, username: username, transaction: transaction}, {headers});
     }
 
-    postUserSession(userSession: UserSessionModel): Observable<UserSessionModel> {
-      return this.http.post<UserSessionModel>(apiUrl + 'usersession/', userSession, {headers});
+    postUserSession(userSession: UserSessionModel): Observable<ApiPostResponse> {
+      return this.http.post<ApiPostResponse>(apiUrl + 'usersession/', userSession, {headers});
     }
 
-    putUserSession(userSession: UserSessionModel): Observable<UserSessionModel> {
-      return this.http.put<UserSessionModel>(apiUrl + 'usersession/' + userSession.userSessionId, userSession, {headers});
+    putUserSession(userSession: UserSessionModel): Observable<ApiPostResponse> {
+      return this.http.put<ApiPostResponse>(apiUrl + 'usersession/' + userSession.userSessionId, userSession, {headers});
     }
 
 }

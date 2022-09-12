@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
-import { AppLanguageModel } from '../models/app-models/app-common.model';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { ApiPostResponse, AppLanguageModel } from '../models/app-models/app-common.model';
+import { AppLoginElementModel } from '../models/app-models/app-login-element.model';
 import { AppStateModel } from '../models/app-models/app-state';
 import { UserSessionModel } from '../models/usersession/usersession';
+import { ConfigService } from '../services/app-config.service';
 import { AppStateService } from '../services/app-state.service';
 import { UsersService } from '../services/user/user.service';
 import { UserSessionService } from '../services/usersession/usersession.service';
@@ -24,6 +26,8 @@ export class AuthComponent implements OnInit, OnDestroy {
     {name: 'arabic', code: 'ar'},
   ];
 
+  selectedLanguage: AppLanguageModel = {name: 'english', code: 'en'};
+
   loginInfo: AuthLoginInfoModel = {
     username: '',
     password: ''
@@ -31,20 +35,21 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   validationMessage: string = '';
 
-  selectedLanguage: AppLanguageModel = {name: 'english', code: 'en'};
-
   onLoginSub: Subscription = new Subscription();
   postUserSessionSub: Subscription = new Subscription();
+  putUserSessionSub: Subscription = new Subscription();
 
   constructor(private userService: UsersService,
               private appStateService: AppStateService,
               private userSessionService: UserSessionService,
+              private configService: ConfigService,
               private router: Router) { }
 
-  ngOnInit(): void {
+  loginPageElements: AppLoginElementModel = this.configService.loginPageElements;
 
-    
-  }
+  appStateData$: BehaviorSubject<AppStateModel> = new BehaviorSubject<AppStateModel>(this.appStateService.initialAppStateData);
+
+  ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
 
@@ -54,7 +59,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.onLoginSub = this.userService.onLogin(this.loginInfo).subscribe((userResponse: any) => {
 
         if (userResponse.post) {
-
 
           const newUserSession: UserSessionModel = {
             userSessionId: 0,
@@ -73,38 +77,54 @@ export class AuthComponent implements OnInit, OnDestroy {
             updatedAt: new Date(),
           };
 
+          const appStateCopy: AppStateModel = this.appStateService.initialAppStateData;
 
-          this.postUserSessionSub = this.userSessionService.postUserSession(newUserSession).subscribe((createdUserSession: any) => {
+          Object.assign(appStateCopy, {isLoading: true});
 
+          this.appStateService.appStateData.next(appStateCopy);  
+
+          this.postUserSessionSub = this.userSessionService.postUserSession(newUserSession).subscribe((createdUserSession: ApiPostResponse) => {
 
               const createdUserSessionCopy = JSON.parse(JSON.stringify(createdUserSession.post));
 
-              const appStateCopy: AppStateModel = this.appStateService.initialAppStateData;
-
               Object.assign(appStateCopy, {
                 isAuthenticated: true,
-                language: {name: 'English', code: 'en'},
+                language: this.selectedLanguage,
                 user: userResponse.post,
                 userSession: createdUserSession.post,
               });
 
               Object.assign(createdUserSessionCopy, {appState: appStateCopy});
 
-              this.userSessionService.putUserSession(createdUserSessionCopy).subscribe((updatedUserSession: any) => {
+              this.putUserSessionSub = this.userSessionService.putUserSession(createdUserSessionCopy).subscribe((updatedUserSession: ApiPostResponse) => {
 
+                const updatedUserSessionCopy = JSON.parse(JSON.stringify(updatedUserSession.post));
+                
+                setTimeout(() => {
+                  Object.assign(appStateCopy, {
+                    isLoading: false,
+                    userSession: updatedUserSessionCopy,
+                  });
+  
+                  this.appStateService.appStateData.next(appStateCopy);  
 
-                this.appStateService.appStateData.next(appStateCopy);  
-                this.router.navigate(['main/' + createdUserSession.post.userSessionId + '/' + createdUserSession.post.username])
-              })
+                  this.router.navigate(['main/' + createdUserSession.post.userSessionId + '/' + createdUserSession.post.username])
+                }, 1000)
+
+              });
 
           });
 
         } else {
+
           this.validationMessage = userResponse.message;
+
         }
     });
 
     } else {
+
+      this.validationMessage = 'Please enter a username and password.'
 
     }
   }
@@ -112,6 +132,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.onLoginSub.unsubscribe();
     this.postUserSessionSub.unsubscribe();
+    this.putUserSessionSub.unsubscribe();
   }
 
 

@@ -14,3 +14,8 @@ export interface AppActionModel {
     type: string;
     payload: any;
 }
+
+export interface ApiPostResponse {
+    message: string;
+    post: any;
+}

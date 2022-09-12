@@ -59,7 +59,7 @@ exports.onLogin = async(req, res, next) => {
 
 exports.createUser = async(req, res, next) => {
 
-    const records = sequelize.query(`SELECT * FROM sanctionsdb.users where idNo = :idNo`, {
+    const records = sequelize.query(`SELECT * FROM systemfactory.users where idNo = :idNo`, {
         replacements: { idNo: req.body.idNo},
         type: QueryTypes.SELECT
     });

@@ -14,6 +14,7 @@ import { ViewModule } from './sample/demo/view/view.module';
 import { PagesModule } from './sample/pages/pages.module';
 import { IconsModule } from './sample/utilities/icons.module';
 import { AuthModule } from './auth/auth.module';
+import { EngineModule } from './engine/engine.module';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { AuthModule } from './auth/auth.module';
         ViewModule,
         PagesModule,
         IconsModule,
-        AuthModule
+        AuthModule,
+        EngineModule
     ],
     declarations: [
         AppComponent

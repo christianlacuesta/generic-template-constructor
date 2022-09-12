@@ -6,4 +6,6 @@ export interface AppLoginElementModel {
     welcomeMessage: AppCommonModel;
     instructionMessage: AppCommonModel;
     buttonLabel: AppCommonModel;    
+    usernameLabel: AppCommonModel;
+    passwordLabel: AppCommonModel;
 }

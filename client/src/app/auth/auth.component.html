@@ -6,7 +6,10 @@
             </div>
         </div>
         <div class="topbar-right mr-3 flex">
-            <p-dropdown [options]="languageOption" [(ngModel)]="selectedLanguage" optionLabel="name"></p-dropdown>
+            <p-dropdown 
+            [options]="languageOption" 
+            [(ngModel)]="selectedLanguage" 
+            optionLabel="name"></p-dropdown>
         </div>
     </div>
 
@@ -14,12 +17,12 @@
         <form name="form" (ngSubmit)="form.form.valid && onSubmit(form)" #form="ngForm" novalidate>
             <div class="pages-panel card flex flex-column">
                 <div class="pages-header px-3 py-1">
-                    <h2>LOGIN</h2>
+                    <h2>{{selectedLanguage.name === 'english'? loginPageElements.title.label : loginPageElements.title.label2}}</h2>
                 </div>
     
-                <h4>Welcome</h4>
+                <h4>{{selectedLanguage.name === 'english'? loginPageElements.welcomeMessage.label : loginPageElements.welcomeMessage.label2}}</h4>
     
-                <div class="pages-detail mb-6 px-6">Please use the form to sign-in in the network</div>
+                <div class="pages-detail mb-6 px-6">{{selectedLanguage.name === 'english'? loginPageElements.instructionMessage.label : loginPageElements.instructionMessage.label2}}</div>
     
                 <div class="input-panel flex flex-column px-3">
                     <div class="p-inputgroup">
@@ -28,7 +31,7 @@
                         </span>
                         <span class="p-float-label">
                             <input type="text" id="username" pInputText>
-                            <label for="username">Username</label>
+                            <label for="username">{{selectedLanguage.name === 'english'? loginPageElements.usernameLabel.label : loginPageElements.usernameLabel.label2}}</label>
                         </span>
                     </div>
     
@@ -38,15 +41,19 @@
                         </span>
                         <span class="p-float-label">
                             <input type="password" id="password" pInputText>
-                            <label for="password">Password</label>
+                            <label for="password">{{selectedLanguage.name === 'english'? loginPageElements.passwordLabel.label : loginPageElements.passwordLabel.label2}}</label>
                         </span>
                     </div>
     
                 </div>
+
+                <div *ngIf="(appStateData$ | async).isLoading" class="mb-6 px-3">
+                    <app-loader></app-loader>
+                </div>
     
                 <p-button 
                 class="login-button mb-6 px-3" 
-                label="LOGIN" type="submit">
+                [label]="selectedLanguage.name === 'english'? loginPageElements.buttonLabel.label : loginPageElements.buttonLabel.label2" type="submit">
                 </p-button>
 
                 <div *ngIf="validationMessage" class="invalid-feedback">

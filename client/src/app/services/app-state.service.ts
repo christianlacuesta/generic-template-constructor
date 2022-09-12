@@ -15,6 +15,7 @@ export class AppStateService implements OnDestroy {
 
     initialAppStateData: AppStateModel = {
         isAuthenticated: false,
+        isLoading: false,
         language: {name: 'English', code: 'en'},
         user: initialUserState,
         userSession: initialUserSessionState,
@@ -28,7 +29,7 @@ export class AppStateService implements OnDestroy {
         error: null
     }
 
-    appStateData = new BehaviorSubject<AppStateModel>(this.initialAppStateData);
+    appStateData: BehaviorSubject<AppStateModel> = new BehaviorSubject<AppStateModel>(this.initialAppStateData);
 
     constructor(private userSessionService: UserSessionService,
                 private router: Router) { }

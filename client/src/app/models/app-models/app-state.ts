@@ -7,6 +7,7 @@ import { AppLanguageModel } from "./app-common.model";
 
 export interface AppStateModel {
     isAuthenticated: boolean;
+    isLoading: boolean;
     language: AppLanguageModel;
     user: UserModel; 
     userSession: UserSessionModel;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppLoginElementModel } from '../models/app-models/app-login-element.model';
+import { AppLoginElementModel } from '../models/app-models/layout/app-login-element.model';
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
@@ -42,7 +42,17 @@ export class ConfigService {
             label2: 'كلمة المرور',
             code: '6'
         }, 
+        topbarTitle: {
+            name: 'topbarTitle',
+            label: 'Prince Sultan Cardiac Center',
+            label2: 'مركز الأمير سلطان للقلب',
+            code: '7'
+        }, 
     };
+
+    mainPageElements: {
+        
+    }
 
     constructor() { }
 

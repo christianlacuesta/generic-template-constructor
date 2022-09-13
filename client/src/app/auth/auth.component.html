@@ -1,9 +1,9 @@
 <div class="pages-body login-page flex flex-column">
     <div class="topbar p-3 flex justify-content-between flex-row align-items-center">
         <div class="topbar-left ml-3 flex" routerLink="/">
-            <div class="logo">
-                <img src="assets/layout/images/logo2x.png" alt=""/>
-            </div>
+            <p class="topbar-title">
+                {{selectedLanguage.name === 'english'? loginPageElements.topbarTitle.label : loginPageElements.topbarTitle.label2}}
+            </p>
         </div>
         <div class="topbar-right mr-3 flex">
             <p-dropdown 
@@ -33,8 +33,8 @@
                             <input 
                             type="text" 
                             id="username" 
-                            #username="ngModel"
-                            name="username"
+                            #password="ngModel"
+                            name="password"
                             [(ngModel)]="loginInfo.username" 
                             pInputText>
                             <label for="username">{{selectedLanguage.name === 'english'? loginPageElements.usernameLabel.label : loginPageElements.usernameLabel.label2}}</label>

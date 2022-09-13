@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { ApiPostResponse, AppLanguageModel } from '../models/app-models/app-common.model';
-import { AppLoginElementModel } from '../models/app-models/app-login-element.model';
+import { AppLoginElementModel } from '../models/app-models/layout/app-login-element.model';
 import { AppStateModel } from '../models/app-models/app-state';
 import { UserSessionModel } from '../models/usersession/usersession';
 import { ConfigService } from '../services/app-config.service';
@@ -20,6 +20,10 @@ import { AuthLoginInfoModel } from './auth.model';
   providers: [MessageService]
 })
 export class AuthComponent implements OnInit, OnDestroy {
+  @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+    this.resetError();
+  }
 
   languageOption: AppLanguageModel[] = [
     {name: 'english', code: 'en'},
@@ -50,6 +54,10 @@ export class AuthComponent implements OnInit, OnDestroy {
   appStateData$: BehaviorSubject<AppStateModel> = new BehaviorSubject<AppStateModel>(this.appStateService.initialAppStateData);
 
   ngOnInit(): void {}
+
+  resetError() {
+    this.validationMessage = '';
+  }
 
   onSubmit(form: NgForm) {
 

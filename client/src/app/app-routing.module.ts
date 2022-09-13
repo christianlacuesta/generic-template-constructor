@@ -73,7 +73,7 @@ import { SysMainComponent } from './layout/sys-main/sys.main.component';
                 ]
             },
             {
-                path: 'sys', component: SysMainComponent,
+                path: 'main/:userSessionId/:userId', component: SysMainComponent,
                 children: []
             },
             {path: 'auth', component: AuthComponent},

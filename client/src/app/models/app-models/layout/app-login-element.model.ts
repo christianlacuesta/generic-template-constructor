@@ -1,4 +1,4 @@
-import { AppCommonModel } from "./app-common.model";
+import { AppCommonModel } from "../app-common.model";
 
 export interface AppLoginElementModel {
     logo: any;
@@ -8,4 +8,5 @@ export interface AppLoginElementModel {
     buttonLabel: AppCommonModel;    
     usernameLabel: AppCommonModel;
     passwordLabel: AppCommonModel;
+    topbarTitle: AppCommonModel;
 }

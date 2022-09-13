@@ -30,7 +30,13 @@
                             <i class="pi pi-user"></i>
                         </span>
                         <span class="p-float-label">
-                            <input type="text" id="username" pInputText>
+                            <input 
+                            type="text" 
+                            id="username" 
+                            #username="ngModel"
+                            name="username"
+                            [(ngModel)]="loginInfo.username" 
+                            pInputText>
                             <label for="username">{{selectedLanguage.name === 'english'? loginPageElements.usernameLabel.label : loginPageElements.usernameLabel.label2}}</label>
                         </span>
                     </div>
@@ -40,7 +46,13 @@
                             <i class="pi pi-lock"></i>
                         </span>
                         <span class="p-float-label">
-                            <input type="password" id="password" pInputText>
+                            <input 
+                            type="password" 
+                            id="password" 
+                            #password="ngModel"
+                            name="password"
+                            [(ngModel)]="loginInfo.password" 
+                            pInputText>
                             <label for="password">{{selectedLanguage.name === 'english'? loginPageElements.passwordLabel.label : loginPageElements.passwordLabel.label2}}</label>
                         </span>
                     </div>

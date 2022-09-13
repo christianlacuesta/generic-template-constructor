@@ -35,6 +35,7 @@ import {AppWizardComponent} from './sample/pages/app.wizard.component';
 import {AppContactusComponent} from './sample/pages/app.contactus.component';
 import {AppLandingComponent} from './sample/pages/app.landing.component';
 import { AuthComponent } from './auth/auth.component';
+import { SysMainComponent } from './layout/sys-main/sys.main.component';
 
 @NgModule({
     imports: [
@@ -70,6 +71,10 @@ import { AuthComponent } from './auth/auth.component';
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
                 ]
+            },
+            {
+                path: 'sys', component: SysMainComponent,
+                children: []
             },
             {path: 'auth', component: AuthComponent},
             {path: 'pages/landing', component: AppLandingComponent},

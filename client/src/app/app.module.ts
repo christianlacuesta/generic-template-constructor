@@ -15,6 +15,7 @@ import { PagesModule } from './sample/pages/pages.module';
 import { IconsModule } from './sample/utilities/icons.module';
 import { AuthModule } from './auth/auth.module';
 import { EngineModule } from './engine/engine.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { EngineModule } from './engine/engine.module';
         PagesModule,
         IconsModule,
         AuthModule,
-        EngineModule
+        EngineModule,
+        LayoutModule
     ],
     declarations: [
         AppComponent
